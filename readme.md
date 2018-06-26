@@ -1,16 +1,16 @@
 # Dlang LLVM Wrapper Library
 
-#### Features
+## Features
 - 
 
 
-#### Requirements
+## Requirements
 - Dlang https://dlang.org/
 - LLVM 6 http://llvm.org/
 
 LLVM .lib files are required (statically compiled).
 
-#### Generating the LLVM .lib file (On Windows)
+## Generating the LLVM .lib file (On Windows)
 Required software: python 2.7, cmake, visual studio
 
 1) Download the source from the LLVM website to c:\temp\llvm
