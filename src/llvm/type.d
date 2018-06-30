@@ -63,7 +63,7 @@ LLVMTypeRef bytePointerType() {
 	return pointerType(i8Type());
 }
 //====------------------------------------------------- array types
-LLVMTypeRef array(LLVMTypeRef elementType, uint numElements) {
+LLVMTypeRef arrayType(LLVMTypeRef elementType, uint numElements) {
 	return LLVMArrayType(elementType, numElements);
 }
 uint arrayLength(LLVMTypeRef arr) {
