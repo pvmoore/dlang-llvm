@@ -36,11 +36,19 @@ bool isI8Type(LLVMTypeRef t) {
 	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind &&
 		t.getNumBits == 8;
 }
+bool isPointer(LLVMTypeRef t) {
+    LLVMTypeKind kind = t.getTypeEnum();
+    return kind==LLVMTypeKind.LLVMPointerTypeKind;
+}
+bool isInteger(LLVMTypeRef t) {
+    LLVMTypeKind kind = t.getTypeEnum();
+    return kind==LLVMTypeKind.LLVMIntegerTypeKind;
+}
 bool isReal(LLVMTypeRef t) {
 	LLVMTypeKind kind = t.getTypeEnum();
 	return kind==LLVMTypeKind.LLVMHalfTypeKind ||
-		kind==LLVMTypeKind.LLVMFloatTypeKind ||
-		kind==LLVMTypeKind.LLVMDoubleTypeKind;
+    	   kind==LLVMTypeKind.LLVMFloatTypeKind ||
+		   kind==LLVMTypeKind.LLVMDoubleTypeKind;
 }
 /// works on array, vector and pointer types
 LLVMTypeRef getElementType(LLVMTypeRef ty) {
