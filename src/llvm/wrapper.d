@@ -36,6 +36,9 @@ final class LLVMWrapper {
 	}
 	LLVMModule createModule(string name) {
 		auto m = new LLVMModule(name);
+        m.setTargetTriple(x86Target.targetTriple);
+        m.setDataLayout(x86Target.dataLayout);
+
 		modules[name] = m;
 		return m;
 	}  

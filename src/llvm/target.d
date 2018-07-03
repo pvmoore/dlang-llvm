@@ -55,9 +55,6 @@ final class LLVMX86Target {
 	}
 	/// return true if the write succeeded
 	bool writeToFileASM(LLVMModule mod, string filename) {
-		mod.setTargetTriple(targetTriple);
-		mod.setDataLayout(dataLayout);
-
 		char* error;
 		LLVMBool res = LLVMTargetMachineEmitToFile(
 			targetMachine, 
@@ -70,9 +67,6 @@ final class LLVMX86Target {
 	}
 	/// return true if the write succeeded
 	bool writeToFileOBJ(LLVMModule mod, string filename) {
-		mod.setTargetTriple(targetTriple);
-		mod.setDataLayout(dataLayout);
-
 		char* error;
 		LLVMBool res = LLVMTargetMachineEmitToFile(
 			targetMachine, 
