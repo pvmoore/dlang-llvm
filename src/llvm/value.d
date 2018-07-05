@@ -98,11 +98,11 @@ LLVMValueRef constVector(LLVMValueRef[] values) {
 LLVMBasicBlockRef appendBasicBlock(LLVMValueRef func, string name) {
 	return LLVMAppendBasicBlock(func, name.toStringz);
 }
-// arg 0 is the first parameter
-LLVMValueRef getFunctionArg(LLVMValueRef func, uint index) {
+// param 0 is the first parameter
+LLVMValueRef getFunctionParam(LLVMValueRef func, uint index) {
 	return LLVMGetParam(func, index);
 }
-LLVMValueRef[] getFunctionArgs(LLVMValueRef func) {
+LLVMValueRef[] getFunctionParams(LLVMValueRef func) {
 	auto args = new LLVMValueRef[countFunctionArgs(func)];
 	LLVMGetParams(func, args.ptr);
 	return args;

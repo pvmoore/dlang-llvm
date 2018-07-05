@@ -114,7 +114,7 @@ int main(string[] argv) {
 	auto endBB		= fib.appendBasicBlock("end");
 	builder.positionAtEndOf(entryBB);
 
-	auto n = fib.getFunctionArg(0);
+	auto n = fib.getFunctionParam(0);
 
 	auto swtch = builder.switch_(n, defaultBB, 2);
 
