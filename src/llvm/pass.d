@@ -70,7 +70,6 @@ final class LLVMPassManager {
 	void addStripSymbolsPass() { LLVMAddStripSymbolsPass(ref_); }
 
 	// Vectorize.cpp
-	void addAddBBVectorizePass() { LLVMAddBBVectorizePass(ref_); }
 	void addAddLoopVectorizePass() { LLVMAddLoopVectorizePass(ref_); }
 	void addSLPVectorizePass() { LLVMAddSLPVectorizePass(ref_); }
 
