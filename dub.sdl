@@ -68,7 +68,7 @@ libs "LLVMX86Info" "LLVMX86Utils"
 
 ############################################## 6.0.0
 versions "LLVM_6"
-lflags "/LIBPATH:C:/work/llvm-6.0.0/lib/"
+lflags "/LIBPATH:C:/work/llvm-6.0.1/lib/"
 
 
 
