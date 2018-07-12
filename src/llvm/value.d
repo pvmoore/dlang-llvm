@@ -11,11 +11,8 @@ void setName(LLVMValueRef v, string name) {
 LLVMTypeRef getType(LLVMValueRef Val) {
 	return LLVMTypeOf(Val);
 }
-LLVMLinkage getLinkage(LLVMValueRef global) {
-	return LLVMGetLinkage(global);
-}
-void setLinkage(LLVMValueRef global, LLVMLinkage linkage) {
-	LLVMSetLinkage(global, linkage);
+void setAlignment(LLVMValueRef v, uint bytes) {
+	LLVMSetAlignment(v, bytes);
 }
 void dump(LLVMValueRef val) {
 	LLVMDumpValue(val);
@@ -151,8 +148,11 @@ void setExternallyInitialised(LLVMValueRef global, bool flag) {
 void setVisibility(LLVMValueRef global, LLVMVisibility viz) {
 	LLVMSetVisibility(global, viz);
 }
-void setAlignment(LLVMValueRef global, uint bytes) {
-	LLVMSetAlignment(global, bytes);
+LLVMLinkage getLinkage(LLVMValueRef global) {
+    return LLVMGetLinkage(global);
+}
+void setLinkage(LLVMValueRef global, LLVMLinkage linkage) {
+    LLVMSetLinkage(global, linkage);
 }
 //====----------------------------------------------------------
 void setTailCall(LLVMValueRef call, bool flag) {

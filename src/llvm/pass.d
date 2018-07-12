@@ -8,7 +8,7 @@ final class LLVMPassManager {
 	this(LLVMX86Target target) {
 		this.ref_ = LLVMCreatePassManager();
 
-		// balls - this adds the TargetTransformInfoWrapperPass
+		// this adds the TargetTransformInfoWrapperPass
 		LLVMAddAnalysisPasses(target.targetMachine, ref_);
 	}
 	void destroy() {
