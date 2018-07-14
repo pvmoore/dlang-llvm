@@ -1,52 +1,5 @@
 module llvm.c.enums;
 
-// LLVM_3 attributes
-version(LLVM_3) {
-enum LLVMAttribute {
-    NoUnwind     = 1<<5,
-    NoInline     = 1<<11,
-    AlwaysInline = 1<<12,
-    ReadOnly     = 1<<10,
-
-    LLVMZExtAttribute       = 1<<0,
-	LLVMSExtAttribute       = 1<<1,
-	LLVMNoReturnAttribute   = 1<<2,
-	LLVMInRegAttribute      = 1<<3,
-	LLVMStructRetAttribute  = 1<<4,
-	LLVMNoAliasAttribute    = 1<<6,
-	LLVMByValAttribute      = 1<<7,
-	LLVMNestAttribute       = 1<<8,
-	LLVMReadNoneAttribute   = 1<<9,
-	LLVMOptimizeForSizeAttribute = 1<<13,
-	LLVMStackProtectAttribute    = 1<<14,
-	LLVMStackProtectReqAttribute = 1<<15,
-	LLVMAlignment = 31<<16,
-	LLVMNoCaptureAttribute  = 1<<21,
-	LLVMNoRedZoneAttribute  = 1<<22,
-	LLVMNoImplicitFloatAttribute = 1<<23,
-	LLVMNakedAttribute      = 1<<24,
-	LLVMInlineHintAttribute = 1<<25,
-	LLVMStackAlignment = 7<<26,
-	LLVMReturnsTwice = 1 << 29,
-	LLVMUWTable = 1 << 30,
-	LLVMNonLazyBind = 1 << 31
-
-	/* FIXME: These attributes are currently not included in the C API as
-	a temporary measure until the API/ABI impact to the C API is understood
-	and the path forward agreed upon.
-	LLVMSanitizeAddressAttribute = 1ULL << 32,
-	LLVMStackProtectStrongAttribute = 1ULL<<35,
-	LLVMColdAttribute = 1ULL << 40,
-	LLVMOptimizeNoneAttribute = 1ULL << 42,
-	LLVMInAllocaAttribute = 1ULL << 43,
-	LLVMNonNullAttribute = 1ULL << 44,
-	LLVMJumpTableAttribute = 1ULL << 45,
-	LLVMConvergentAttribute = 1ULL << 46,
-	LLVMSafeStackAttribute = 1ULL << 47,
-	*/
-}
-}
-
 enum LLVMOpcode {
 	/* Terminator Instructions */
 	LLVMRet            = 1,

@@ -65,8 +65,12 @@ enum LLVMAttribute : string {
     NoUnwind        = "nounwind",       // function
     NoInline        = "noinline",       // function
     AlwaysInline    = "alwaysinline",   // function
+    InlineHint      = "inlinehint",     // function
     ReadOnly        = "readonly",       // function or argument
     WriteOnly       = "writeonly",      // function or argument
+    OptimiseNone    = "optnone",        // function
+
+
     NonNull         = "nonnull"
 }
 private __gshared const LLVMAttribute[uint] kindToAttrib;
