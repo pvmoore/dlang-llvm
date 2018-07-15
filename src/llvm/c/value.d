@@ -14,16 +14,6 @@ extern(C) {
 	LLVMCallConv LLVMGetFunctionCallConv(LLVMValueRef Fn);
 	void LLVMDeleteFunction(LLVMValueRef Fn);
 
-    // Deprecated attribute stuff (pre LLVM 4)
-    version(LLVM_3) {
-        void LLVMAddFunctionAttr(LLVMValueRef Fn, LLVMAttribute PA);
-        void LLVMRemoveFunctionAttr(LLVMValueRef Fn, LLVMAttribute PA);
-        void LLVMAddAttribute(LLVMValueRef Arg, LLVMAttribute PA);
-        void LLVMRemoveAttribute(LLVMValueRef Arg, LLVMAttribute PA);
-        LLVMAttribute LLVMGetAttribute(LLVMValueRef Arg);
-        void LLVMAddInstrAttribute(LLVMValueRef Instr, uint index, LLVMAttribute);
-    }
-
 	void LLVMSetParamAlignment(LLVMValueRef Arg, uint align_);
 
 	// misc
@@ -97,13 +87,20 @@ extern(C) {
 	LLVMBool LLVMIsConstantString(LLVMValueRef c);
 	immutable(char)* LLVMGetAsString(LLVMValueRef c, size_t* out_);
 
-	void LLVMSetVisibility(LLVMValueRef Global, LLVMVisibility Viz);
-	void LLVMSetAlignment(LLVMValueRef V, uint Bytes);
+
+    void LLVMSetAlignment(LLVMValueRef V, uint Bytes);
 	void LLVMSetInitializer(LLVMValueRef GlobalVar, LLVMValueRef ConstantVal);
 	void LLVMSetThreadLocal(LLVMValueRef GlobalVar, LLVMBool IsThreadLocal);
 	void LLVMSetThreadLocalMode(LLVMValueRef GlobalVar, LLVMThreadLocalMode Mode);
 	void LLVMSetGlobalConstant(LLVMValueRef GlobalVar, LLVMBool IsConstant);
 	void LLVMSetExternallyInitialized(LLVMValueRef GlobalVar, LLVMBool IsExtInit);
+    void LLVMSetVisibility(LLVMValueRef Global, LLVMVisibility Viz);
+
+
+    uint LLVMGetAlignment(LLVMValueRef V);
+    LLVMValueRef LLVMGetInitializer(LLVMValueRef GlobalVar);
+    LLVMVisibility LLVMGetVisibility(LLVMValueRef Global);
+
 
 	LLVMValueRef LLVMConstAdd(LLVMValueRef LHSConstant, LLVMValueRef RHSConstant);
 

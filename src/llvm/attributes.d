@@ -119,9 +119,9 @@ LLVMAttribute[] getFunctionArgAttributes(LLVMValueRef func, int index) {
     }
     return attrs2;
 }
-void addAttribute(LLVMValueRef instr, uint index, LLVMAttribute attr) {
-    // todo
-}
+//void addAttribute(LLVMValueRef instr, uint index, LLVMAttribute attr) {
+//
+//}
 
 private LLVMAttributeRef getEnumAttribute(LLVMAttribute attr, ulong value=0) {
     uint kind = getKindId(attr);

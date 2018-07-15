@@ -14,6 +14,9 @@ LLVMTypeRef getType(LLVMValueRef Val) {
 void setAlignment(LLVMValueRef v, uint bytes) {
 	LLVMSetAlignment(v, bytes);
 }
+uint getAlignment(LLVMValueRef V) {
+    return LLVMGetAlignment(V);
+}
 void dump(LLVMValueRef val) {
 	LLVMDumpValue(val);
 }
@@ -133,6 +136,9 @@ void setMetadata(LLVMValueRef instr, uint kind, LLVMValueRef node) {
 void setInitialiser(LLVMValueRef global, LLVMValueRef constValue) {
 	LLVMSetInitializer(global, constValue);
 }
+LLVMValueRef getInitialiser(LLVMValueRef GlobalVar) {
+    return LLVMGetInitializer(GlobalVar);
+}
 void setThreadLocal(LLVMValueRef global, bool flag) {
 	LLVMSetThreadLocal(global, flag.toLLVMBool);
 }
@@ -147,6 +153,9 @@ void setExternallyInitialised(LLVMValueRef global, bool flag) {
 }
 void setVisibility(LLVMValueRef global, LLVMVisibility viz) {
 	LLVMSetVisibility(global, viz);
+}
+LLVMVisibility getVisibility(LLVMValueRef Global) {
+    return LLVMGetVisibility(Global);
 }
 LLVMLinkage getLinkage(LLVMValueRef global) {
     return LLVMGetLinkage(global);
