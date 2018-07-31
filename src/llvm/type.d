@@ -42,6 +42,9 @@ bool isReal(LLVMTypeRef t) {
 		kind==LLVMTypeKind.LLVMFloatTypeKind ||
 		kind==LLVMTypeKind.LLVMDoubleTypeKind;
 }
+bool isPointer(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMPointerTypeKind;
+}
 /// works on array, vector and pointer types
 LLVMTypeRef getElementType(LLVMTypeRef ty) {
 	return LLVMGetElementType(ty);
