@@ -61,16 +61,13 @@ libs "LLVMX86Info" "LLVMX86Utils"
 
 #libs "LTO"
 
-
-############################################## 5.0.0
-#versions "LLVM_5"
-#lflags "/LIBPATH:C:/work/llvm-5.0.0/lib/"
+############################################## 6.0.0
+#versions "LLVM_6"
+#lflags "/LIBPATH:C:/work/llvm-6.0.1/lib/"
 
 ############################################## 6.0.0
-versions "LLVM_6"
-lflags "/LIBPATH:C:/work/llvm-6.0.1/lib/"
-
-
+versions "LLVM_7"
+lflags "/LIBPATH:C:/work/llvm-7.0.0/lib/"
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"

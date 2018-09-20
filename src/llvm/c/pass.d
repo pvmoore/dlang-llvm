@@ -102,7 +102,6 @@ extern(C) {
 	void LLVMAddStripSymbolsPass(LLVMPassManagerRef PM);
 
 	// from Vectorize.cpp
-	void LLVMAddBBVectorizePass(LLVMPassManagerRef PM);
 	void LLVMAddLoopVectorizePass(LLVMPassManagerRef PM);
 	void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
 }
