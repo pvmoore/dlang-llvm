@@ -173,13 +173,18 @@ LLVMValueRef getElementAsConst(LLVMValueRef v, uint index) {
 LLVMValueRef clone(LLVMValueRef v) {
 	return LLVMInstructionClone(v);
 }
-/// add case to switch instruction
+//=====--------------------------------------------------- switch
 void addCase(LLVMValueRef swtch, 
 			 LLVMValueRef value, 
 			 LLVMBasicBlockRef toBlock) 
 {
 	LLVMAddCase(swtch, value, toBlock);
 }
+//=====--------------------------------------------------- phi
+void addIncoming(LLVMValueRef PhiNode, LLVMValueRef[] IncomingValues, LLVMBasicBlockRef[] IncomingBlocks) {
+    LLVMAddIncoming(PhiNode, IncomingValues.ptr, IncomingBlocks.ptr, cast(int)IncomingValues.length);
+}
+
 /// Add a destination to the indirectbr instruction
 void addIndirectBrDestination(LLVMValueRef IndirectBr, LLVMBasicBlockRef Dest) {
 	LLVMAddDestination(IndirectBr, Dest);
@@ -192,13 +197,7 @@ void addLandingPadClause(LLVMValueRef LandingPad, LLVMValueRef ClauseVal) {
 void addLandingPadCleanup(LLVMValueRef LandingPad, LLVMBool Val) {
 	LLVMSetCleanup(LandingPad, Val);
 }
-void addIncoming(LLVMValueRef PhiNode, LLVMValueRef[] IncomingValues,
-				 LLVMBasicBlockRef[] IncomingBlocks) {
-					 LLVMAddIncoming(PhiNode, 
-									 IncomingValues.ptr, 
-									 IncomingBlocks.ptr, 
-									 cast(int)IncomingValues.length); 
-				 }
+
 
 bool isNull(LLVMValueRef v) {
 	return 0!=LLVMIsNull(v);
