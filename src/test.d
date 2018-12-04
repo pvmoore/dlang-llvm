@@ -184,6 +184,9 @@ int main(string[] argv) {
 		writefln("failed to write OBJ");
 	}
 
+	string assembly = target.writeToStringASM(mod);
+	ok |= assembly.length > 0;
+
     if(ok)
 	    writefln("-- All Good --");
     else

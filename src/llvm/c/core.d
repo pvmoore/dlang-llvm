@@ -23,6 +23,9 @@ extern(C) {
 	alias LLVMPassRegistryRef = LLVMOpaquePassRegistry*;
     struct LLVMOpaquePassRegistry {}
 
+	alias LLVMMemoryBufferRef = LLVMOpaqueMemoryBuffer*;
+	struct LLVMOpaqueMemoryBuffer {}
+
 
 
 	void LLVMInitializeCore(LLVMPassRegistryRef R);
@@ -43,6 +46,7 @@ extern(C) {
 
 	void LLVMAddAnalysisPasses(LLVMTargetMachineRef T, LLVMPassManagerRef PM);
 
+
 	char *LLVMGetDefaultTargetTriple();
 	LLVMBool LLVMGetTargetFromTriple(immutable(char)* TripleStr, LLVMTargetRef *T,
 									 char **ErrorMessage);
@@ -59,16 +63,32 @@ extern(C) {
 	char* LLVMGetTargetMachineCPU(LLVMTargetMachineRef T);
 	char* LLVMGetTargetMachineFeatureString(LLVMTargetMachineRef T);
 	LLVMBool LLVMTargetHasAsmBackend(LLVMTargetRef T);
-	LLVMBool LLVMTargetMachineEmitToFile(LLVMTargetMachineRef T, 
-										 LLVMModuleRef M,
-										 immutable(char)* Filename, 
-										 LLVMCodeGenFileType codegen, 
-										 char** ErrorMessage);
+
+	LLVMBool LLVMTargetMachineEmitToFile(
+		LLVMTargetMachineRef T,
+	    LLVMModuleRef M,
+	    immutable(char)* Filename,
+	    LLVMCodeGenFileType codegen,
+	    char** ErrorMessage);
+
+	LLVMBool LLVMTargetMachineEmitToMemoryBuffer(
+		LLVMTargetMachineRef T,
+		LLVMModuleRef M,
+		LLVMCodeGenFileType codegen,
+		char** ErrorMessage,
+		LLVMMemoryBufferRef* OutMemBuf
+	);
+
+
 	void LLVMDisposeMessage(char* Message);
 	void LLVMDisposeTargetMachine(LLVMTargetMachineRef T);
 
 	LLVMTargetDataRef LLVMCreateTargetData(immutable(char)* StringRep);
 
+	//============================================== Memory Buffer stuff
+	char* LLVMGetBufferStart(LLVMMemoryBufferRef MemBuf);
+	size_t LLVMGetBufferSize(LLVMMemoryBufferRef MemBuf);
+	void LLVMDisposeMemoryBuffer(LLVMMemoryBufferRef MemBuf);
 	
 	
 	/*struct LLVMMCJITCompilerOptions {

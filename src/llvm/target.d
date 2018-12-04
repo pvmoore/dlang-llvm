@@ -42,6 +42,29 @@ final class LLVMX86Target {
 			LLVMCodeModel.LLVMCodeModelDefault
 		);
 	}
+	string writeToStringASM(LLVMModule mod) {
+		char* error;
+		LLVMMemoryBufferRef memBuf;
+		auto result = LLVMTargetMachineEmitToMemoryBuffer(
+			targetMachine,
+			mod.ref_,
+			LLVMCodeGenFileType.LLVMAssemblyFile,
+			&error,
+			&memBuf
+		);
+		if(result==0) {
+			auto size = LLVMGetBufferSize(memBuf);
+			char* ptr = LLVMGetBufferStart(memBuf);
+			string str = ptr[0..size].idup;
+			LLVMDisposeMemoryBuffer(memBuf);
+			return str;
+		}
+		if(error) {
+			import core.stdc.stdlib : free;
+			free(error);
+		}
+		return null;
+	}
 	/// return true if the write succeeded
 	bool writeToFileASM(LLVMModule mod, string filename) {
 		char* error;
@@ -52,6 +75,10 @@ final class LLVMX86Target {
 			LLVMCodeGenFileType.LLVMAssemblyFile,
 			&error);
 		//writefln("error=%s", error.fromStringz);
+		if(error) {
+			import core.stdc.stdlib : free;
+			free(error);
+		}
 		return 0==res;
 	}
 	/// return true if the write succeeded
