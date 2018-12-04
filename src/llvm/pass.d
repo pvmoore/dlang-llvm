@@ -2,6 +2,8 @@ module llvm.pass;
 
 import llvm.all;
 
+/// See http://llvm.org/docs/Passes.html
+
 final class LLVMPassManager {
 	LLVMPassManagerRef ref_;
 

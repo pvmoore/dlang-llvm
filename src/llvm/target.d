@@ -6,20 +6,6 @@ final class LLVMX86Target {
 	LLVMTargetRef target;
 	LLVMTargetMachineRef targetMachine;
 	const string targetTriple = "x86_64-pc-windows-msvc"; // "x86_64-pc-win32"
-	/**
-	 *	e           little-endian
-	 *  p:64:64:64  pointer size
-     *  i1:8:8      i1 alignment
-     *  i8:8:8      i8 alignment
-     *  i16:16:16
-     *  i32:32:32
-     *  i64:64:64
-     *  f32:32:32
-     *  f64:64:64
-     *  v128:128:128    vector type alignment
-     *
-     *
-	 */
 	const string dataLayout   =
         "e-"~               // little-endian
         "p:64:64:64-"~      // pointer size
@@ -30,12 +16,15 @@ final class LLVMX86Target {
         "i64:64:64-"~
         "f32:32:32-"~
         "f64:64:64-"~
+		"f80:128:128-"~
         "v64:64:64-"~
         "v128:128:128-"~    // vector alignment
         "v256:256:256-"~
-        "a0:0:64-"~         // struct alignment
-        "S0:64:64-"~        // stack alignment
-        "f80:128:128";
+        "a:0:64-"~          // struct alignment
+        "S64-"~        		// stack alignment
+		"m:w-"~				// windows mangling
+		"n8:16:32:64";		// native integer widths
+
 	const string cpu	  = "haswell";
 	const string features = "+avx"; // +feature,-feature syntax
 
