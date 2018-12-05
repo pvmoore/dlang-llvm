@@ -20,8 +20,9 @@ final class LLVMX86Target {
         "v64:64:64-"~
         "v128:128:128-"~    // vector alignment
         "v256:256:256-"~
+		"v512:512:512-"~
         "a:0:64-"~          // struct alignment
-        "S64-"~        		// stack alignment
+        "S128-"~            // stack alignment
 		"m:w-"~				// windows mangling
 		"n8:16:32:64";		// native integer widths
 
