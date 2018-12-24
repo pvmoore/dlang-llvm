@@ -67,7 +67,7 @@ libs "LLVMX86Info" "LLVMX86Utils"
 
 ##############################################
 versions "LLVM_7"
-lflags "/LIBPATH:C:/work/llvm-7.0.0/lib/"
+lflags "/LIBPATH:C:/work/llvm-7.0.1/lib/"
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"
