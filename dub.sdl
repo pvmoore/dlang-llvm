@@ -9,7 +9,7 @@ libs "LLVMDebugInfoCodeView"
 #libs "LLVMDebugInfoDWARF"
 #libs "LLVMDebugInfoMSF"
 #libs "LLVMDebugInfoPDB"
-#libs "LLVMDemangle"
+libs "LLVMDemangle"
 #libs "LLVMDlltoolDriver"
 
 #libs "LLVMExecutionEngine"
@@ -61,13 +61,16 @@ libs "LLVMX86Info" "LLVMX86Utils"
 
 #libs "LTO"
 
-##############################################
-#versions "LLVM_6"
-#lflags "/LIBPATH:C:/work/llvm-6.0.1/lib/"
+
 
 ##############################################
-versions "LLVM_7"
-lflags "/LIBPATH:C:/work/llvm-7.0.1/lib/"
+#versions "LLVM_7"
+#lflags "/LIBPATH:C:/work/llvm-7.0.1/lib/"
+
+
+versions "LLVM_8"
+lflags "/LIBPATH:C:/work/llvm-8.0.0/lib/"
+
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"
