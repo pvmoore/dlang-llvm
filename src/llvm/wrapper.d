@@ -17,7 +17,7 @@ final class LLVMWrapper {
 		LLVMInitializeTarget(passRegistry);
 		LLVMInitializeTransformUtils(passRegistry);
 		LLVMInitializeInstCombine(passRegistry);
-		//LLVMInitializeAggressiveInstCombiner(passRegistry);   // LLVM 7
+		LLVMInitializeAggressiveInstCombiner(passRegistry);  
 		LLVMInitializeCodeGen(passRegistry);
 		LLVMInitializeAnalysis(passRegistry);
 		LLVMInitializeScalarOpts(passRegistry);

@@ -55,6 +55,8 @@ final class LLVMPassManager {
 	void addBitTrackingDCEPass() { LLVMAddBitTrackingDCEPass(ref_); }
 	void addAggressiveDCEPass() { LLVMAddAggressiveDCEPass(ref_); }
 
+	void addUnifyFunctionExitNodesPass() { LLVMAddUnifyFunctionExitNodesPass(ref_); }
+
 	// IPO.cpp
 	void addArgumentPromotionPass() { LLVMAddArgumentPromotionPass(ref_); }
 	void addConstantMergePass() { LLVMAddConstantMergePass(ref_); }
@@ -75,7 +77,33 @@ final class LLVMPassManager {
 	void addAddLoopVectorizePass() { LLVMAddLoopVectorizePass(ref_); }
 	void addSLPVectorizePass() { LLVMAddSLPVectorizePass(ref_); }
 
+	// Coroutines
+	void addCoroEarlyPass() { LLVMAddCoroEarlyPass(ref_); }
+	void addCoroSplitPass() { LLVMAddCoroSplitPass(ref_); }
+	void addCoroElidePass() { LLVMAddCoroElidePass(ref_); }
+	void addCoroCleanupPass() { LLVMAddCoroCleanupPass(ref_); }
+
+	// void addPasses2() {
+	// 	addVerifierPass();
+	// 	addCoroEarlyPass();
+	// 	addGlobalDCEPass();
+	// 	addTypeBasedAliasAnalysisPass();
+	// 	addScopedNoAliasAAPass();
+	// 	//?
+	// 	addIPSCCPPass();
+
+
+	// 	addCFGSimplificationPass();
+	// 	addCoroCleanupPass();
+	// 	addVerifierPass();
+	// }
 	void addPasses() {
+
+		addVerifierPass();
+		addCoroEarlyPass();
+
+
+		addGlobalDCEPass();
 		addTypeBasedAliasAnalysisPass();
 		addScopedNoAliasAAPass();
 		addIPSCCPPass();
@@ -84,6 +112,7 @@ final class LLVMPassManager {
 		addDeadArgEliminationPass();
 		addInstructionCombiningPass();
 
+		
 		addCFGSimplificationPass();
 		addPruneEHPass();
 		addFunctionInliningPass();
@@ -122,12 +151,16 @@ final class LLVMPassManager {
 		addLICMPass();
 		addAggressiveDCEPass();
 
+		addCoroSplitPass();
+
 		addCFGSimplificationPass();
 		addInstructionCombiningPass();
 		addLoopRotatePass();
 		addAddLoopVectorizePass();
 		addInstructionCombiningPass();
 		addSLPVectorizePass();
+
+		addCoroElidePass();
 
 		addCFGSimplificationPass();
 		addInstructionCombiningPass();
@@ -139,8 +172,11 @@ final class LLVMPassManager {
 		addGlobalDCEPass();
 		addConstantMergePass();
 		addGlobalOptimizerPass();
-		//addStripSymbolsPass();
+		
+		addCFGSimplificationPass();
+		addCoroCleanupPass();
 
+		//addStripSymbolsPass();
 		addVerifierPass();
 	}
 	bool runOnModule(LLVMModule mod) {

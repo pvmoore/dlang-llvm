@@ -2,7 +2,6 @@ module llvm.all;
 
 public:
 
-
 version(LLVM_8) {
     pragma(msg,"Using LLVM 8.0.0");
 }

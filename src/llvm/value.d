@@ -94,6 +94,9 @@ LLVMValueRef constArray(LLVMTypeRef ElementTy, LLVMValueRef[] values) {
 LLVMValueRef constVector(LLVMValueRef[] values) {
 	return LLVMConstVector(values.ptr, cast(uint)values.length);
 }
+LLVMValueRef constTokenNone() {
+	return constAllZeroes(tokenType());
+}
 //=====--------------------------------------------------- functions
 LLVMBasicBlockRef appendBasicBlock(LLVMValueRef func, string name) {
 	return LLVMAppendBasicBlock(func, name.toStringz);

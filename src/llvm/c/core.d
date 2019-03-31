@@ -43,6 +43,8 @@ extern(C) {
 	void LLVMInitializeVectorization(LLVMPassRegistryRef R);
 	void LLVMInitializeIPO(LLVMPassRegistryRef R);
 	void LLVMInitializeIPA(LLVMPassRegistryRef R);
+	void LLVMInitializeAggressiveInstCombiner(LLVMPassRegistryRef R);
+
 
 	void LLVMAddAnalysisPasses(LLVMTargetMachineRef T, LLVMPassManagerRef PM);
 
@@ -91,23 +93,6 @@ extern(C) {
 	void LLVMDisposeMemoryBuffer(LLVMMemoryBufferRef MemBuf);
 	
 	
-	/*struct LLVMMCJITCompilerOptions {
-		uint OptLevel;
-		LLVMCodeModel CodeModel;
-		LLVMBool NoFramePointerElim;
-		LLVMBool EnableFastISel;
-		LLVMMCJITMemoryManagerRef MCJMM;
-	}
-	//void LLVMLinkInInterpreter();
-	//void LLVMLinkInMCJIT();
-	//void LLVMLinkInOrcMCJITReplacement(); // On Request Compilation
-	//LLVMBool LLVMTargetHasJIT(LLVMTargetRef T);
-	//void LLVMInitializeMCJITCompilerOptions(LLVMMCJITCompilerOptions *PassedOptions,
-	//											size_t SizeOfPassedOptions);
-	//LLVMBool LLVMCreateMCJITCompilerForModule(LLVMExecutionEngineRef *OutJIT, LLVMModuleRef M,
-	//										  LLVMMCJITCompilerOptions *PassedOptions, size_t SizeOfPassedOptions,
-	//										  char **OutError);
-	*/
 	//===--------------------------------------------- All targets
 	void LLVMInitializeAllTargetInfos();
 	void LLVMInitializeAllTargets();

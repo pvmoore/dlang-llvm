@@ -27,6 +27,8 @@ extern(C) {
 	LLVMTypeRef LLVMFP128Type();
 	LLVMTypeRef LLVMPPCFP128Type();
 
+	LLVMTypeRef LLVMTokenTypeInContext(LLVMContextRef c);
+
 	LLVMTypeRef LLVMFunctionType(LLVMTypeRef ReturnType,
 								 LLVMTypeRef *ParamTypes, uint ParamCount,
 								 LLVMBool IsVarArg);

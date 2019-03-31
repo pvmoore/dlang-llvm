@@ -29,6 +29,7 @@ extern(C) {
 	void LLVMAddConstantPropagationPass(LLVMPassManagerRef PM);
 	void LLVMAddAggressiveDCEPass(LLVMPassManagerRef PM);
 	void LLVMAddDeadStoreEliminationPass(LLVMPassManagerRef PM);
+
 	// eliminates trivially redundant instructions
 	void LLVMAddEarlyCSEPass(LLVMPassManagerRef PM);
 	void LLVMAddInstructionCombiningPass(LLVMPassManagerRef PM);
@@ -63,6 +64,7 @@ extern(C) {
 	void LLVMAddScalarReplAggregatesPassSSA(LLVMPassManagerRef PM);
 	void LLVMAddScalarReplAggregatesPassWithThreshold(LLVMPassManagerRef PM, int Threshold);
 	
+	void LLVMAddUnifyFunctionExitNodesPass(LLVMPassManagerRef PM);
 	
 	void LLVMAddTailCallEliminationPass(LLVMPassManagerRef PM);	
 
@@ -104,4 +106,10 @@ extern(C) {
 	// from Vectorize.cpp
 	void LLVMAddLoopVectorizePass(LLVMPassManagerRef PM);
 	void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
+
+	// Coroutines passes
+	void LLVMAddCoroEarlyPass(LLVMPassManagerRef PM);
+	void LLVMAddCoroSplitPass(LLVMPassManagerRef PM);
+	void LLVMAddCoroElidePass(LLVMPassManagerRef PM);
+	void LLVMAddCoroCleanupPass(LLVMPassManagerRef PM);
 }

@@ -1,10 +1,12 @@
 name "llvm"
 platforms "windows"
 
+libs "LLVMAggressiveInstCombine"
 libs "LLVMAnalysis" "LLVMAsmParser" "LLVMAsmPrinter"
 libs "LLVMBinaryFormat" "LLVMBitReader" "LLVMBitWriter"
 libs "LLVMCodeGen" "LLVMCore"
-#libs "LLVMCoroutines" "LLVMCoverage"
+libs "LLVMCoroutines" 
+#libs "LLVMCoverage"
 libs "LLVMDebugInfoCodeView"
 #libs "LLVMDebugInfoDWARF"
 #libs "LLVMDebugInfoMSF"
@@ -12,7 +14,7 @@ libs "LLVMDebugInfoCodeView"
 libs "LLVMDemangle"
 #libs "LLVMDlltoolDriver"
 
-#libs "LLVMExecutionEngine"
+libs "LLVMExecutionEngine"
 
 #libs "LLVMFuzzMutate"
 
@@ -24,13 +26,14 @@ libs "LLVMInstCombine" "LLVMInstrumentation"
 libs "LLVMipo"
 
 libs "LLVMIRReader"
+libs "LLVMRuntimeDyld"
 
 #libs "LLVMLibDriver" "LLVMLineEditor"
 libs "LLVMLinker"
 #libs "LLVMLTO"
 
 libs "LLVMMC" "LLVMMCDisassembler"
-#libs "LLVMMCJIT"
+libs "LLVMMCJIT"
 libs "LLVMMCParser"
 #libs "LLVMMIRParser"
 
