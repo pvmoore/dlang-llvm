@@ -83,20 +83,6 @@ final class LLVMPassManager {
 	void addCoroElidePass() { LLVMAddCoroElidePass(ref_); }
 	void addCoroCleanupPass() { LLVMAddCoroCleanupPass(ref_); }
 
-	// void addPasses2() {
-	// 	addVerifierPass();
-	// 	addCoroEarlyPass();
-	// 	addGlobalDCEPass();
-	// 	addTypeBasedAliasAnalysisPass();
-	// 	addScopedNoAliasAAPass();
-	// 	//?
-	// 	addIPSCCPPass();
-
-
-	// 	addCFGSimplificationPass();
-	// 	addCoroCleanupPass();
-	// 	addVerifierPass();
-	// }
 	void addPasses() {
 
 		addVerifierPass();
@@ -111,12 +97,12 @@ final class LLVMPassManager {
 		addPromoteMemoryToRegisterPass();
 		addDeadArgEliminationPass();
 		addInstructionCombiningPass();
-
 		
 		addCFGSimplificationPass();
 		addPruneEHPass();
 		addFunctionInliningPass();
 		addFunctionAttrsPass();
+		addUnifyFunctionExitNodesPass();
 		addScalarReplAggregatesPass();
 		addScalarizerPass();
 		addEarlyCSEPass();
@@ -175,6 +161,26 @@ final class LLVMPassManager {
 		
 		addCFGSimplificationPass();
 		addCoroCleanupPass();
+
+		addCFGSimplificationPass();
+		addInstructionCombiningPass();
+		addIndVarSimplifyPass();
+		addLoopIdiomPass();
+		addLoopDeletionPass();
+		addLoopUnrollPass();
+		addMergedLoadStoreMotionPass();
+		addGVNPass();
+		addMemCpyOptPass();
+		addSCCPPass();
+		addBitTrackingDCEPass();
+		addInstructionCombiningPass();
+		addJumpThreadingPass();
+		addCorrelatedValuePropagationPass();
+		addDeadStoreEliminationPass();
+		addLICMPass();
+		addAggressiveDCEPass();
+
+		//addCFGSimplificationPass();
 
 		//addStripSymbolsPass();
 		addVerifierPass();

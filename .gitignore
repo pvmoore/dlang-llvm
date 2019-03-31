@@ -1,11 +1,19 @@
 
 out/
+.out/
 bin/
+.bin/
 .idea/
 *.iml
 
 .dub/
+logs/
 .logs/
 
 *.exe
 *.lib
+
+temp.*
+text.*
+test.*
+opts.txt
