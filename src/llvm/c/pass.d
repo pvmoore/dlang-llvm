@@ -112,4 +112,15 @@ extern(C) {
 	void LLVMAddCoroSplitPass(LLVMPassManagerRef PM);
 	void LLVMAddCoroElidePass(LLVMPassManagerRef PM);
 	void LLVMAddCoroCleanupPass(LLVMPassManagerRef PM);
+
+
+	void LLVMAddCalledValuePropagationPass(LLVMPassManagerRef PM);
+	void LLVMAddLoopSimplifyCFGPass(LLVMPassManagerRef PM);
+	void LLVMAddNewGVNPass(LLVMPassManagerRef PM);
+	void LLVMAddLoopUnrollAndJamPass(LLVMPassManagerRef PM);
+	void LLVMAddLowerAtomicPass(LLVMPassManagerRef PM);
+	void LLVMAddGVNHoistLegacyPass(LLVMPassManagerRef PM);
+	void LLVMAddAggressiveInstCombinerPass(LLVMPassManagerRef PM);
+	void LLVMAddEarlyCSEMemSSAPass(LLVMPassManagerRef PM);
+	void LLVMAddLoopSinkPass(LLVMPassManagerRef PM);
 }

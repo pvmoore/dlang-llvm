@@ -45,9 +45,6 @@ LLVMValueRef constAllOnes(LLVMTypeRef t) {
 LLVMValueRef undef(LLVMTypeRef ty) {
 	return LLVMGetUndef(ty);
 }
-LLVMValueRef constPointerToNull(LLVMTypeRef ty) {
-	return LLVMConstPointerNull(ty);
-}
 LLVMValueRef constI1(int value) { 
 	return LLVMConstInt(LLVMInt1Type(), value, cast(LLVMBool)true);
 }

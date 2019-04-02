@@ -26,31 +26,36 @@ libs "LLVMInstCombine" "LLVMInstrumentation"
 libs "LLVMipo"
 
 libs "LLVMIRReader"
-libs "LLVMRuntimeDyld"
+
 
 #libs "LLVMLibDriver" "LLVMLineEditor"
 libs "LLVMLinker"
 #libs "LLVMLTO"
 
-libs "LLVMMC" "LLVMMCDisassembler"
+libs "LLVMMC" 
+#libs LLVMMCA
+libs "LLVMMCDisassembler"
 libs "LLVMMCJIT"
 libs "LLVMMCParser"
 #libs "LLVMMIRParser"
 
 libs "LLVMObjCARCOpts" "LLVMObject"
 #libs "LLVMObjectYAML" "LLVMOption"
+#libs "LLVMOPTRemarks"
 
 #libs "LLVMOrcJIT"
 
 #libs "LLVMPasses"
 libs "LLVMProfileData"
-#libs "LLVMRuntimeDyld"
+libs "LLVMRuntimeDyld"
 
 libs "LLVMScalarOpts" "LLVMSelectionDAG" "LLVMSupport"
 #libs "LLVMSymbolize"
 #libs "LLVMTableGen"
 
-libs "LLVMTarget" "LLVMTransformUtils"
+libs "LLVMTarget" 
+#libs "LLVMTestingSupport" "LLVMTextAPI"
+libs "LLVMTransformUtils"
 
 libs "LLVMVectorize"
 
