@@ -16,4 +16,4 @@ logs/
 temp.*
 text.*
 test.*
-opts.txt
+opts*.txt

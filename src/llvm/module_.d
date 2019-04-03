@@ -131,15 +131,15 @@ final class LLVMModule {
 			case "llvm.expect.i1" : // i1 @llvm.expect.i1(i1,i1)
 				return addCFunction("llvm.expect.i1",i1Type(),[i1Type(), i1Type()]);
 
-			case "llvm.memset.p0i8.i32" : // void @llvm.memset.p0i8.i32(i8*,i8,i32,i1)
-				return addCFunction("llvm.memset.p0i8.i32",voidType(),[bytePointerType(), i8Type(), i32Type(), i1Type()]);
+			//case "llvm.memset.p0i8.i32" : // void @llvm.memset.p0i8.i32(i8*,i8,i32,i1)
+			//	return addCFunction("llvm.memset.p0i8.i32",voidType(),[bytePointerType(), i8Type(), i32Type(), i1Type()]);
 
-			case "malloc" : // i8* @malloc(i32)
-				return addCFunction("malloc", bytePointerType(), [i32Type()]);
+			//case "malloc" : // i8* @malloc(i32)
+			//	return addCFunction("malloc", bytePointerType(), [i32Type()]);
 			case "memcmp" : // i32 @memcmp(i8*,i8*,i64)
 				return addCFunction("memcmp", i32Type(), [bytePointerType(), bytePointerType(), i64Type()]);
-			case "llvm.memmove.p0i8.p0i8.i32" : // void @llvm.memmove.p0i8.p0i8.i32(i8*,i8*,i32,i1)
-				return addCFunction("llvm.memmove.p0i8.p0i8.i32",voidType(),[bytePointerType(), bytePointerType(), i32Type(), i1Type()]);
+			//case "llvm.memmove.p0i8.p0i8.i32" : // void @llvm.memmove.p0i8.p0i8.i32(i8*,i8*,i32,i1)
+			//	return addCFunction("llvm.memmove.p0i8.p0i8.i32",voidType(),[bytePointerType(), bytePointerType(), i32Type(), i1Type()]);
 
 			case "putchar" : // i32 @putchar(i32)
 				return addCFunction("putchar", i32Type(), [i32Type()]);

@@ -186,6 +186,20 @@ final class LLVMBuilder {
 	LLVMValueRef mallocArray(LLVMTypeRef type, LLVMValueRef len, string name=null) {
 		return LLVMBuildArrayMalloc(ref_, type, len, name.toStringz);
 	}
+	/// free malloced memory
+	LLVMValueRef free(LLVMValueRef PointerVal) {
+		return LLVMBuildFree(ref_, PointerVal);
+	}
+	LLVMValueRef memset(LLVMValueRef Ptr, LLVMValueRef Val, LLVMValueRef Len, uint Align) {
+		return LLVMBuildMemSet(ref_, Ptr, Val, Len, Align);
+	}
+	LLVMValueRef memcpy(LLVMValueRef Dst, uint DstAlign, LLVMValueRef Src, uint SrcAlign, LLVMValueRef Size) {
+		return LLVMBuildMemCpy(ref_, Dst, DstAlign, Src, SrcAlign, Size);
+	}
+	LLVMValueRef memmove(LLVMValueRef Dst, uint DstAlign, LLVMValueRef Src, uint SrcAlign, LLVMValueRef Size) {
+		return LLVMBuildMemMove(ref_, Dst, DstAlign, Src, SrcAlign, Size);
+	}
+
 	/// allocate memory on the stack for one type
 	LLVMValueRef alloca(LLVMTypeRef Ty, string name=null) {
 		return LLVMBuildAlloca(ref_, Ty, name.toStringz);
@@ -193,10 +207,6 @@ final class LLVMBuilder {
 	/// allocate memory on the stack for an array of types
 	LLVMValueRef allocaArray(LLVMTypeRef Ty, LLVMValueRef len, string name=null) {
 		return LLVMBuildArrayAlloca(ref_, Ty, len, name.toStringz);
-	}
-	/// free malloced memory
-	LLVMValueRef free(LLVMValueRef PointerVal) {
-		return LLVMBuildFree(ref_, PointerVal);
 	}
 	LLVMValueRef load(LLVMValueRef PointerVal, string name=null) {
 		return LLVMBuildLoad(ref_, PointerVal, name.toStringz);
@@ -323,5 +333,9 @@ final class LLVMBuilder {
 	}
 
 	// const
-
+	LLVMValueRef constAdd(LLVMValueRef left, LLVMValueRef right) {
+		assert(left.isConst);
+		assert(right.isConst);
+		return LLVMConstAdd(left, right);
+	}
 }

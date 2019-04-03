@@ -101,9 +101,6 @@ extern(C) {
     LLVMValueRef LLVMGetInitializer(LLVMValueRef GlobalVar);
     LLVMVisibility LLVMGetVisibility(LLVMValueRef Global);
 
-
-	LLVMValueRef LLVMConstAdd(LLVMValueRef LHSConstant, LLVMValueRef RHSConstant);
-
 	LLVMLinkage LLVMGetLinkage(LLVMValueRef Global);
 	void LLVMSetLinkage(LLVMValueRef Global, LLVMLinkage Linkage);
 

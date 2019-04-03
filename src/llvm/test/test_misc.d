@@ -1,12 +1,13 @@
-module test_fibonacci;
+module llvm.test.test_misc;
 
 import llvm.all;
+import llvm.test.test_common;
 
-void testFibonacci(LLVMWrapper wrapper) {
+void testMisc(Tester tester) {
 
+	auto wrapper     = tester.getWrapper();
 	auto builder	 = wrapper.builder;
-	auto passManager = wrapper.passManager;
-	auto target		 = wrapper.x86Target;
+	//auto passManager = wrapper.passManager;
 
     LLVMModule mod1  = wrapper.createModule("test");
 	auto main 		 = mod1.addCFunction("main", voidType(), []);
@@ -87,99 +88,4 @@ void testFibonacci(LLVMWrapper wrapper) {
 	wrapper.linkModules(mod1, mod2, mod3);
 	writefln("=============== after linking test+test2+test3 -> test ============");
 	mod1.dumpToConsole();
-
-	LLVMModule mod = wrapper.createModule("fibonacci");
-
-	// fib function
-	auto fib = mod.addFastcallFunction(
-		"fib",
-		i32Type(), 
-		[i32Type()],
-		false
-	);
-
-	auto entryBB	= fib.appendBasicBlock("entry");
-	auto case0BB	= fib.appendBasicBlock("case0");
-	auto case1BB	= fib.appendBasicBlock("case1");
-	auto defaultBB	= fib.appendBasicBlock("case_default");
-	auto endBB		= fib.appendBasicBlock("end");
-	builder.positionAtEndOf(entryBB);
-
-	auto n = fib.getFunctionParam(0);
-
-	auto swtch = builder.switch_(n, defaultBB, 2);
-
-	swtch.addCase(constI32(0), case0BB);
-	swtch.addCase(constI32(1), case1BB);
-
-	builder.positionAtEndOf(case0BB);
-	builder.br(endBB);
-
-	builder.positionAtEndOf(case1BB);
-	builder.br(endBB);
-
-	builder.positionAtEndOf(defaultBB);
-	auto subResult = builder.sub(n, constI32(1));
-	auto call1 = builder.fastcall(fib, [subResult]);
-
-	auto subResult2 = builder.sub(n, constI32(2));
-	auto call2 = builder.fastcall(fib, [subResult2]);
-
-	auto res_default = builder.add(call1, call2);
-	builder.br(endBB);
-
-	builder.positionAtEndOf(endBB);
-	auto res = builder.phi(i32Type(), "result");
-	auto phi_vals = [ constI32(0), constI32(1), res_default ];
-	auto phi_blocks = [ case0BB, case1BB, defaultBB ];
-	res.addIncoming(phi_vals, phi_blocks);
-	builder.ret(res);
-
-	bool ok = true;
-
-    writefln("=============== fibonacci ============");
-	mod.dumpToConsole();
-
-	if(!mod.verify()) {
-	    ok = false;
-		writefln("verification failed");
-	} else {
-		writefln("verification passed");
-	}
-
-	passManager.runOnModule(mod);
-
-	if(!mod.verify()) {
-	    ok = false;
-		writefln("verification failed after opt");
-	} else {
-		writefln("verification passed after opt");
-		writefln("=============== after optimisation ======================");
-		mod.dumpToConsole();
-	}
-
-	if(!mod.writeToFileLL("temp.ll")) {
-	    ok = false;
-		writefln("failed to write LL");
-	}
-	if(!mod.writeToFileBC("temp.bc")) {
-	    ok = false;
-		writefln("failed to write BC");
-	}
-	if(!target.writeToFileASM(mod, "temp.asm")) {
-	    ok = false;
-		writefln("failed to write ASM");
-	}
-	if(!target.writeToFileOBJ(mod, "temp.obj")) {
-	    ok = false;
-		writefln("failed to write OBJ");
-	}
-
-	string assembly = target.writeToStringASM(mod);
-	ok |= assembly.length > 0;
-
-    if(ok)
-	    writefln("-- All Good --");
-    else
-        writefln("-- FAILURE --");
 }

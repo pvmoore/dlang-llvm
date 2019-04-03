@@ -90,7 +90,7 @@ buildType "release" {
 #lflags "/VERBOSE"
 
 configuration "test" {
-	mainSourceFile "src/test.d"
+	mainSourceFile "src/llvm/test/test.d"
 	targetType "executable"
 	targetName "bin-test-llvm"
 

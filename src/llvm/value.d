@@ -98,6 +98,9 @@ LLVMValueRef constTokenNone() {
 LLVMBasicBlockRef appendBasicBlock(LLVMValueRef func, string name) {
 	return LLVMAppendBasicBlock(func, name.toStringz);
 }
+LLVMBasicBlockRef getEntryBasicBlock(LLVMValueRef func) {
+	return LLVMGetEntryBasicBlock(func);
+}
 // param 0 is the first parameter
 LLVMValueRef getFunctionParam(LLVMValueRef func, uint index) {
 	return LLVMGetParam(func, index);

@@ -7,4 +7,5 @@ extern(C) {
 	struct LLVMOpaqueBasicBlock {}
 
 	LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef FnRef, immutable(char)* Name);
+	LLVMBasicBlockRef LLVMGetEntryBasicBlock(LLVMValueRef Fn);
 }

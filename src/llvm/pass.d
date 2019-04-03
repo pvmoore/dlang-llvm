@@ -313,8 +313,8 @@ final class LLVMPassManager {
 
 		addVerifierPass();
 	}
-	bool runOnModule(LLVMModule mod) {
+	void runOnModule(LLVMModule mod) {
 		//addTargetData(LLVMCreateTargetData(mod.getDataLayout().toStringz), pass);
-		return 0!=LLVMRunPassManager(ref_, mod.ref_);
+		LLVMRunPassManager(ref_, mod.ref_);
 	}
 }
