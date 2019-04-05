@@ -40,9 +40,9 @@ public:
         assert(mod);
         assert(func);
 
-        auto entryBB      = func.getEntryBasicBlock(); assert(entryBB);
-        auto coroAllocBB  = func.appendBasicBlock("coro.alloc");
-        auto coroBeginBB  = func.appendBasicBlock("coro.begin");
+        auto coroAllocBB = func.appendBasicBlock("coro.alloc");
+        auto prevBB      = coroAllocBB.getPrevious(); assert(prevBB);
+        auto coroBeginBB = func.appendBasicBlock("coro.begin");
         auto coroReadyBB = func.appendBasicBlock("func.start");
 
         cleanupBB = func.appendBasicBlock("coro.cleanup");
@@ -74,7 +74,7 @@ public:
     // coro.begin:
         builder.positionAtEndOf(coroBeginBB);
         auto phi1 = builder.phi(bytePointerType());
-        addIncoming(phi1, [constNullPointer(bytePointerType()), alloc], [entryBB, coroAllocBB]);
+        addIncoming(phi1, [constNullPointer(bytePointerType()), alloc], [prevBB, coroAllocBB]);
         auto hdl = builder.ccall(mod.getOrAddIntrinsicFunction("llvm.coro.begin"), [id, phi1], "hdl");
         builder.br(coroReadyBB);
 

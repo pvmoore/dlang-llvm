@@ -6,6 +6,10 @@ extern(C) {
 	alias LLVMBasicBlockRef = LLVMOpaqueBasicBlock*;
 	struct LLVMOpaqueBasicBlock {}
 
-	LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef FnRef, immutable(char)* Name);
+	LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef Fn, immutable(char)* Name);
 	LLVMBasicBlockRef LLVMGetEntryBasicBlock(LLVMValueRef Fn);
+
+	LLVMBasicBlockRef LLVMGetPreviousBasicBlock(LLVMBasicBlockRef BB);
+	LLVMBasicBlockRef LLVMGetNextBasicBlock(LLVMBasicBlockRef BB);
+
 }

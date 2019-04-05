@@ -43,6 +43,9 @@ bool isReal(LLVMTypeRef t) {
 		kind==LLVMTypeKind.LLVMFloatTypeKind ||
 		kind==LLVMTypeKind.LLVMDoubleTypeKind;
 }
+bool isInteger(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind;
+}
 bool isPointer(LLVMTypeRef t) {
 	return t.getTypeEnum()==LLVMTypeKind.LLVMPointerTypeKind;
 }
@@ -65,6 +68,21 @@ LLVMTypeRef voidPointerType() {
 }
 LLVMTypeRef bytePointerType() {
 	return pointerType(i8Type());
+}
+LLVMTypeRef i16PointerType() {
+	return pointerType(i16Type());
+}
+LLVMTypeRef i32PointerType() {
+	return pointerType(i32Type());
+}
+LLVMTypeRef i64PointerType() {
+	return pointerType(i64Type());
+}
+LLVMTypeRef f32PointerType() {
+	return pointerType(f32Type());
+}
+LLVMTypeRef f64PointerType() {
+	return pointerType(f64Type());
 }
 //====------------------------------------------------- array types
 LLVMTypeRef arrayType(LLVMTypeRef elementType, uint numElements) {

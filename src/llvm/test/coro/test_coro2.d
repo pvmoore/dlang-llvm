@@ -35,7 +35,7 @@ public:
     }
     void testMultipleSuspendPoints() {
         writefln("=============================================================");
-        writefln("Coroutine with multiple suspend points ...");
+        writefln("TestCoro2 - Coroutine with multiple suspend points ...");
         writefln("=============================================================");
 
         // Should produce 4859
@@ -49,7 +49,7 @@ public:
         tester.optimise(mod);
         tester.verify(mod);
 
-	    writefln("main = %s", main.toString);
+	    //writefln("main = %s", main.toString);
 
         tester.runOnJIT(mod, main);
 

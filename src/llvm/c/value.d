@@ -58,6 +58,9 @@ extern(C) {
 	LLVMValueRef LLVMGetElementAsConstant(LLVMValueRef c, uint idx);
 	LLVMValueRef LLVMConstVector(LLVMValueRef *ScalarConstantVals, uint Size);
 
+	LLVMValueRef LLVMConstBitCast(LLVMValueRef ConstantVal, LLVMTypeRef ToType);
+	LLVMValueRef LLVMConstPointerCast(LLVMValueRef ConstantVal, LLVMTypeRef ToType);
+
 
 	LLVMTypeRef LLVMTypeOf(LLVMValueRef Val);
 	char *LLVMGetValueName(LLVMValueRef Val);
@@ -96,6 +99,8 @@ extern(C) {
 	void LLVMSetExternallyInitialized(LLVMValueRef GlobalVar, LLVMBool IsExtInit);
     void LLVMSetVisibility(LLVMValueRef Global, LLVMVisibility Viz);
 
+	LLVMBool LLVMGetVolatile(LLVMValueRef MemoryAccessInst);
+	void LLVMSetVolatile(LLVMValueRef MemoryAccessInst, LLVMBool IsVolatile);
 
     uint LLVMGetAlignment(LLVMValueRef V);
     LLVMValueRef LLVMGetInitializer(LLVMValueRef GlobalVar);
@@ -107,4 +112,13 @@ extern(C) {
 	LLVMOpcode LLVMGetConstOpcode(LLVMValueRef ConstantVal);
 	LLVMOpcode LLVMGetInstructionOpcode(LLVMValueRef Inst);
 
+	// atomic ordering
+	LLVMAtomicOrdering LLVMGetOrdering(LLVMValueRef MemAccessInst);
+	void LLVMSetOrdering(LLVMValueRef MemAccessInst, LLVMAtomicOrdering Ordering);
+	LLVMBool LLVMIsAtomicSingleThread(LLVMValueRef AtomicInst);
+	void LLVMSetAtomicSingleThread(LLVMValueRef AtomicInst, LLVMBool NewValue);
+	LLVMAtomicOrdering LLVMGetCmpXchgSuccessOrdering(LLVMValueRef CmpXchgInst);
+	void LLVMSetCmpXchgSuccessOrdering(LLVMValueRef CmpXchgInst, LLVMAtomicOrdering Ordering);
+	LLVMAtomicOrdering LLVMGetCmpXchgFailureOrdering(LLVMValueRef CmpXchgInst);
+	void LLVMSetCmpXchgFailureOrdering(LLVMValueRef CmpXchgInst, LLVMAtomicOrdering Ordering);
 } 

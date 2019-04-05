@@ -1,4 +1,4 @@
-module llvm.test.test_misc;
+module llvm.test.misc.test_misc;
 
 import llvm.all;
 import llvm.test.test_common;

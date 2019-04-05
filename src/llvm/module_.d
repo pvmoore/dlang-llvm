@@ -68,12 +68,7 @@ final class LLVMModule {
 	bool writeToFileBC(string filename) {
 		return 0==LLVMWriteBitcodeToFile(ref_, filename.toStringz);
 	}
-	LLVMValueRef addFunction(string name, 
-							 LLVMTypeRef retType, 
-							 LLVMTypeRef[] params, 
-							 LLVMCallConv cc,
-							 bool vararg=false) 
-	{
+	LLVMValueRef addFunction(string name, LLVMTypeRef retType, LLVMTypeRef[] params, LLVMCallConv cc, bool vararg=false) {
 		auto functionType = LLVMFunctionType(retType, 
 											 params.ptr, 
 											 cast(int)params.length, 
@@ -82,12 +77,10 @@ final class LLVMModule {
 		LLVMSetFunctionCallConv(func, cc);
 		return func;
 	}
-	LLVMValueRef addCFunction(string name, LLVMTypeRef retType, LLVMTypeRef[] params, bool vararg=false) 
-	{
+	LLVMValueRef addCFunction(string name, LLVMTypeRef retType, LLVMTypeRef[] params, bool vararg=false) {
 		return addFunction(name, retType, params, LLVMCallConv.LLVMCCallConv, vararg);
 	}
-	LLVMValueRef addFastcallFunction(string name, LLVMTypeRef retType, LLVMTypeRef[] params, bool vararg=false) 
-	{
+	LLVMValueRef addFastcallFunction(string name, LLVMTypeRef retType, LLVMTypeRef[] params, bool vararg=false) {
 		return addFunction(name, retType, params, LLVMCallConv.LLVMFastCallConv, vararg);
 	}
 	LLVMValueRef getOrAddIntrinsicFunction(string name) {
@@ -141,6 +134,8 @@ final class LLVMModule {
 			//case "llvm.memmove.p0i8.p0i8.i32" : // void @llvm.memmove.p0i8.p0i8.i32(i8*,i8*,i32,i1)
 			//	return addCFunction("llvm.memmove.p0i8.p0i8.i32",voidType(),[bytePointerType(), bytePointerType(), i32Type(), i1Type()]);
 
+			case "printf" : // i32 @printf(i8*, ...)
+				return addCFunction("printf", i32Type(), [bytePointerType()], true);
 			case "putchar" : // i32 @putchar(i32)
 				return addCFunction("putchar", i32Type(), [i32Type()]);
 

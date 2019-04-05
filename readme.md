@@ -6,7 +6,7 @@
 
 ## Requirements
 - Dlang https://dlang.org/
-- LLVM 7 http://llvm.org/
+- LLVM 8 http://llvm.org/
 
 LLVM .lib files are required (statically compiled).
 

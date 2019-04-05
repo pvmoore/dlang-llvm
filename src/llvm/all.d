@@ -6,15 +6,16 @@ version(LLVM_8) {
     pragma(msg,"Using LLVM 8.0.0");
 }
 
-import std.stdio : writeln, writefln;
-import std.string : toStringz, fromStringz;
+import std.stdio    : writeln, writefln;
+import std.string   : toStringz, fromStringz;
 import std.algorithm.iteration : each, map;
-import std.range : array;
+import std.range    : array;
 import std.format   : format;
 
 import llvm.c.all;
 
 import llvm.attributes;
+import llvm.basicblock;
 import llvm.builder;
 import llvm.metadata;
 import llvm.module_;

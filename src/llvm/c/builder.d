@@ -145,8 +145,6 @@ extern(C) {
 									  immutable(char)* Name);
 	LLVMValueRef LLVMBuildStructGEP(LLVMBuilderRef B, LLVMValueRef Pointer,
 									uint Idx, immutable(char)* Name);
-	LLVMBool LLVMGetVolatile(LLVMValueRef MemoryAccessInst);
-	void LLVMSetVolatile(LLVMValueRef MemoryAccessInst, LLVMBool IsVolatile);
 
 	// Casts 
 	LLVMValueRef LLVMBuildTrunc(LLVMBuilderRef, LLVMValueRef Val,
@@ -221,13 +219,20 @@ extern(C) {
 									immutable(char)* Name);
 	LLVMValueRef LLVMBuildPtrDiff(LLVMBuilderRef, LLVMValueRef LHS,
 								  LLVMValueRef RHS, immutable(char)* Name);
+
+	// atomics
 	LLVMValueRef LLVMBuildFence(LLVMBuilderRef B, LLVMAtomicOrdering ordering,
 								LLVMBool singleThread, immutable(char)* Name);
 	LLVMValueRef LLVMBuildAtomicRMW(LLVMBuilderRef B, LLVMAtomicRMWBinOp op,
 									LLVMValueRef PTR, LLVMValueRef Val,
 									LLVMAtomicOrdering ordering,
 									LLVMBool singleThread);
-
+	LLVMValueRef LLVMBuildAtomicCmpXchg(LLVMBuilderRef B, LLVMValueRef Ptr,	
+										LLVMValueRef Cmp, LLVMValueRef New,
+										LLVMAtomicOrdering SuccessOrdering,
+										LLVMAtomicOrdering FailureOrdering,
+										LLVMBool singleThread);
+	
 
 	// const
 	LLVMValueRef LLVMConstAdd(LLVMValueRef LHSConstant, LLVMValueRef RHSConstant);									

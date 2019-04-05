@@ -321,6 +321,8 @@ final class LLVMBuilder {
 	LLVMValueRef ptrDiff(LLVMValueRef LHS, LLVMValueRef RHS, string name=null) {
 		return LLVMBuildPtrDiff(ref_, LHS, RHS, name.toStringz);
 	}
+
+	// atomics
 	LLVMValueRef fence(LLVMAtomicOrdering ordering, bool singleThread, string name=null) {
 		return LLVMBuildFence(ref_, ordering, singleThread.toLLVMBool, name.toStringz);
 	}
@@ -331,11 +333,34 @@ final class LLVMBuilder {
 						   bool singleThread) {
 		return LLVMBuildAtomicRMW(ref_, op, PTR, Val, ordering, singleThread.toLLVMBool);
 	}
+	LLVMValueRef atomicCmpXchg(LLVMValueRef Ptr,
+							   LLVMValueRef Cmp, 
+							   LLVMValueRef New,
+							   LLVMAtomicOrdering SuccessOrdering,
+							   LLVMAtomicOrdering FailureOrdering,
+							   LLVMBool singleThread) 
+	{ 
+		return LLVMBuildAtomicCmpXchg(ref_, Ptr, Cmp, New, SuccessOrdering, FailureOrdering, singleThread);
+	}
 
 	// const
 	LLVMValueRef constAdd(LLVMValueRef left, LLVMValueRef right) {
 		assert(left.isConst);
 		assert(right.isConst);
 		return LLVMConstAdd(left, right);
+	}
+
+	// Useful higher level snippets
+	/** 
+	 *	Sets struct property and returns the store instruction.
+	 */
+	LLVMValueRef setStructProperty(LLVMValueRef structPtr, uint propertyIndex, LLVMValueRef value) {
+        return store(value, getElementPointer_struct(structPtr, propertyIndex));
+	}
+	/**
+	 *	Gets struct property value.
+	 */
+	LLVMValueRef getStructProperty(LLVMValueRef structPtr, uint propertyIndex) {
+		return load(getElementPointer_struct(structPtr, propertyIndex));
 	}
 }

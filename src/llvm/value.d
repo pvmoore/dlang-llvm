@@ -35,6 +35,30 @@ LLVMOpcode getConstOpcode(LLVMValueRef constVal) {
 LLVMOpcode getOpcode(LLVMValueRef v) {
 	return LLVMGetInstructionOpcode(v);
 }
+LLVMAtomicOrdering getAtomicOrdering(LLVMValueRef MemAccessInst) {
+	return LLVMGetOrdering(MemAccessInst);
+}
+void setAtomicOrdering(LLVMValueRef MemAccessInst, LLVMAtomicOrdering ordering) {
+	LLVMSetOrdering(MemAccessInst, ordering);
+}
+bool isAtomicSingleThread(LLVMValueRef atomicInst) {
+	return 0!=LLVMIsAtomicSingleThread(atomicInst);
+}
+void setAtomicSingleThread(LLVMValueRef AtomicInst, bool flag) {
+	LLVMSetAtomicSingleThread(AtomicInst, flag.toLLVMBool);
+}
+LLVMAtomicOrdering getCmpXchgSuccessOrdering(LLVMValueRef CmpXchgInst) {
+	return LLVMGetCmpXchgSuccessOrdering(CmpXchgInst);
+}
+void setCmpXchgSuccessOrdering(LLVMValueRef CmpXchgInst, LLVMAtomicOrdering Ordering) {
+	LLVMSetCmpXchgSuccessOrdering(CmpXchgInst, Ordering);
+}
+LLVMAtomicOrdering getCmpXchgFailureOrdering(LLVMValueRef CmpXchgInst) {
+	return LLVMGetCmpXchgFailureOrdering(CmpXchgInst);
+}
+void setCmpXchgFailureOrdering(LLVMValueRef CmpXchgInst, LLVMAtomicOrdering Ordering) {
+	LLVMSetCmpXchgFailureOrdering(CmpXchgInst, Ordering);
+}
 //=====----------------------------------------------------- consts
 LLVMValueRef constAllZeroes(LLVMTypeRef Ty) {
 	return LLVMConstNull(Ty);
@@ -93,6 +117,12 @@ LLVMValueRef constVector(LLVMValueRef[] values) {
 }
 LLVMValueRef constTokenNone() {
 	return constAllZeroes(tokenType());
+}
+LLVMValueRef constBitcast(LLVMValueRef constValue, LLVMTypeRef toType) {
+	return LLVMConstBitCast(constValue, toType);
+}
+LLVMValueRef constPointerCast(LLVMValueRef constValue, LLVMTypeRef toType) { 
+	return LLVMConstPointerCast(constValue, toType);
 }
 //=====--------------------------------------------------- functions
 LLVMBasicBlockRef appendBasicBlock(LLVMValueRef func, string name) {

@@ -32,7 +32,7 @@ public:
     }
     void testSingleSuspendPoint() {
         writefln("=============================================================");
-        writefln("Coroutine with single suspend point ...");
+        writefln("TestCoro1 - Coroutine with single suspend point ...");
         writefln("=============================================================");
 
         // Should produce 4567
@@ -46,7 +46,7 @@ public:
         tester.optimise(mod);
         tester.verify(mod);
 
-	    writefln("main = %s", main.toString);
+	    //writefln("main = %s", main.toString);
 
         tester.runOnJIT(mod, main);
     }

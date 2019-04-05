@@ -47,7 +47,7 @@ public:
     }
     void testPromise() {
         writefln("=============================================================");
-        writefln("Coroutine with promise ...");
+        writefln("TestCoro3 - Coroutine with promise ...");
         writefln("=============================================================");
 
         // Should produce 12357
@@ -58,15 +58,15 @@ public:
         auto primes = createPrimes(mod);
         auto main = createMain(mod, primes);
 
-        writefln("main = %s", main.toString);
-        writefln("primes = %s", primes.toString);
+        //writefln("main = %s", main.toString);
+        //writefln("primes = %s", primes.toString);
 
         tester.optimise(mod);
         tester.verify(mod);
 
-        mod.dumpToConsole();
+        //mod.dumpToConsole();
 
-        writefln("main = %s", main.toString);
+        //writefln("main = %s", main.toString);
 
         tester.runOnJIT(mod, main);
     }

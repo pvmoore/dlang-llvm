@@ -1,4 +1,4 @@
-module llvm.test.test_fib;
+module llvm.test.misc.test_fib;
 
 import llvm.all;
 import llvm.test.test_common;
@@ -40,7 +40,7 @@ public:
         tester.optimise(mod);
         tester.verify(mod);
 
-        mod.dumpToConsole();
+        //mod.dumpToConsole();
 
         tester.runOnJIT(mod, main);
     }
