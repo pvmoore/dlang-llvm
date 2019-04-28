@@ -93,16 +93,16 @@ shared static this() {
 
 // https://patchwork.freedesktop.org/patch/120211/
 
-void addFunctionAttribute(LLVMValueRef func, LLVMAttribute attr) {
-    LLVMAddAttributeAtIndex(func, -1, getEnumAttribute(attr));
+void addFunctionAttribute(LLVMValueRef func, LLVMAttribute attr, LLVMContextRef context=LLVMGetGlobalContext()) {
+    LLVMAddAttributeAtIndex(func, -1, getEnumAttribute(attr, 0, context));
 }
 void removeFunctionAttribute(LLVMValueRef func, LLVMAttribute attr) {
     uint kind  = getKindId(attr);
     LLVMRemoveEnumAttributeAtIndex(func, -1, kind);
 }
 /// arg -1 is the func, arg 0 is the return value, arg 1 is the first parameter
-void addFunctionArgAttribute(LLVMValueRef func, uint index, LLVMAttribute attr) {
-    LLVMAddAttributeAtIndex(func, index, getEnumAttribute(attr));
+void addFunctionArgAttribute(LLVMValueRef func, uint index, LLVMAttribute attr, LLVMContextRef context=LLVMGetGlobalContext()) {
+    LLVMAddAttributeAtIndex(func, index, getEnumAttribute(attr, 0, context));
 }
 /// arg -1 is the func, arg 0 is the return value, arg 1 is the first parameter
 void removeFunctionArgAttribute(LLVMValueRef func, uint index, LLVMAttribute attr) {
@@ -129,9 +129,10 @@ LLVMAttribute[] getFunctionArgAttributes(LLVMValueRef func, int index) {
 //
 //}
 
-private LLVMAttributeRef getEnumAttribute(LLVMAttribute attr, ulong value=0) {
+private LLVMAttributeRef getEnumAttribute(LLVMAttribute attr, ulong value, LLVMContextRef context) {
     uint kind = getKindId(attr);
-    return LLVMCreateEnumAttribute(LLVMGetGlobalContext(), kind, 0);
+
+    return LLVMCreateEnumAttribute(context, kind, value);
 }
 private uint getKindId(LLVMAttribute attr) {
     string str = cast(string)attr;

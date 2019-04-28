@@ -15,7 +15,9 @@ LLVMTypeRef f16Type() { return LLVMHalfType(); }
 LLVMTypeRef f32Type() { return LLVMFloatType(); }
 LLVMTypeRef f64Type() { return LLVMDoubleType(); }
 LLVMTypeRef f80Type() { return LLVMX86FP80Type(); }
-LLVMTypeRef tokenType() { return LLVMTokenTypeInContext(LLVMGetGlobalContext()); }
+LLVMTypeRef tokenType(LLVMContextRef context=LLVMGetGlobalContext()) {
+	return LLVMTokenTypeInContext(context);
+}
 
 //void dump(LLVMTypeRef t) {
 //	LLVMDumpType(t);
@@ -120,8 +122,8 @@ LLVMTypeRef struct_(LLVMTypeRef[] ElementTypes, bool Packed) {
 						  cast(uint)ElementTypes.length,
 						  Packed.toLLVMBool);
 }
-LLVMTypeRef struct_(string name) {
-	return LLVMStructCreateNamed(LLVMGetGlobalContext(), name.toStringz);
+LLVMTypeRef struct_(string name, LLVMContextRef context=LLVMGetGlobalContext()) {
+	return LLVMStructCreateNamed(context, name.toStringz);
 }
 void setTypes(LLVMTypeRef Struct, LLVMTypeRef[] types, bool packed) {
 	LLVMStructSetBody(Struct, types.ptr,

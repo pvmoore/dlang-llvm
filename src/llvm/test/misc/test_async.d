@@ -4,7 +4,7 @@ import llvm.all;
 import llvm.test.test_common;
 
 /**
-    
+ * Todo: Combine this with coroutines, make await a suspend point and use a work-stealing thread pool.
  */
 final class TestAsyncAwait {
 private:
@@ -41,7 +41,7 @@ public:
         this.builder = wrapper.builder;
     }
     void test() {
-        writefln("=============================================================");
+        writefln("============================================================="); 
         writefln("TestAsyncAwait - Async await ...");
         writefln("=============================================================");
 
