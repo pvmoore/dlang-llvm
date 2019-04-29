@@ -23,7 +23,7 @@ Required software: python 2.7, cmake, visual studio
 6) cmake -G "Visual Studio 16 2019" -A x64 c:\temp\llvm	
 7) Open the Visual Studio .sln file in the build directory
 
-8)
+8) Set to Release build
 
 9) Add code:
 
@@ -47,24 +47,24 @@ Required software: python 2.7, cmake, visual studio
 
     Ignore these files: 
 
-    - Examples/Kaleidoscope
+    Examples/Kaleidoscope
     
-    - Tests/check
-    - Tests/check-lit
-    - Tests/check-llvm
-    - Tests/llvm-test-depends
-    - Tests/prepare-check-lit
-    - Tests/test-depends
-    - Tests/TestPlugin
-    - Tests/UnitTests
+    Tests/check
+    Tests/check-lit
+    Tests/check-llvm
+    Tests/llvm-test-depends
+    Tests/prepare-check-lit
+    Tests/test-depends
+    Tests/TestPlugin
+    Tests/UnitTests
 
-    - Tools/llvm-dlltool
-    - Tools/llvm-lib
-    - Tools/llvm-ranlib
-    - Tools/llvm-readelf	
-    - Tools/llvm-strip
+    Tools/llvm-dlltool
+    Tools/llvm-lib
+    Tools/llvm-ranlib
+    Tools/llvm-readelf	
+    Tools/llvm-strip
     
-    - Utils/LLVMVisualizers
+    Utils/LLVMVisualizers
 	
 11) Rebuild ALL-BUILD
 	
