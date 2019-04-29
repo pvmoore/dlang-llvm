@@ -72,9 +72,6 @@ libs "LLVMX86Info" "LLVMX86Utils"
 
 
 ##############################################
-#versions "LLVM_7"
-#lflags "/LIBPATH:C:/work/llvm-7.0.1/lib/"
-
 
 versions "LLVM_8"
 lflags "/LIBPATH:C:/work/llvm-8.0.0/lib/"

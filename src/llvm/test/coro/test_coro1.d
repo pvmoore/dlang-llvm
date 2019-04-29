@@ -46,7 +46,7 @@ public:
         tester.optimise(mod);
         tester.verify(mod);
 
-	    //writefln("main = %s", main.toString);
+	    writefln("\nmain = %s", main.toString);
 
         tester.runOnJIT(mod, main);
     }
@@ -168,7 +168,7 @@ private:
 
         auto p = builder.add(phi, constI32('0'), "p");
 
-        builder.ccall(mod.getOrAddIntrinsicFunction("putchar"), [p]);
+        builder.ccall(mod.getOrAddCRTFunction("putchar"), [p]);
         /**
             *	return values: -1 = suspend
             *					0 = resume

@@ -7,7 +7,11 @@ extern(C) {
 	struct LLVMOpaqueBuilder {}
 
 	LLVMBuilderRef LLVMCreateBuilder();
+	LLVMBuilderRef LLVMCreateBuilderInContext(LLVMContextRef C);
 	void LLVMDisposeBuilder(LLVMBuilderRef Builder);
+
+	void LLVMSetFastMath(LLVMBuilderRef Builder, bool fast = true);
+
 
 	void LLVMPositionBuilder(LLVMBuilderRef Builder, LLVMBasicBlockRef Block,
 							 LLVMValueRef Instr);

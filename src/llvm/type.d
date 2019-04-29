@@ -15,6 +15,7 @@ LLVMTypeRef f16Type() { return LLVMHalfType(); }
 LLVMTypeRef f32Type() { return LLVMFloatType(); }
 LLVMTypeRef f64Type() { return LLVMDoubleType(); }
 LLVMTypeRef f80Type() { return LLVMX86FP80Type(); }
+
 LLVMTypeRef tokenType(LLVMContextRef context=LLVMGetGlobalContext()) {
 	return LLVMTokenTypeInContext(context);
 }

@@ -33,7 +33,7 @@ public:
         auto fib  = createFib(mod);
         auto main = createMain(mod, fib);
 
-        //writefln("main = %s", main.toString);
+        writefln("\nmain = %s", main.toString);
         //writefln("fib = %s", fib.toString);
         //writefln("asm = %s", wrapper.x86Target.writeToStringASM(mod));
 
@@ -62,7 +62,7 @@ private:
 
         auto f = builder.fastcall(fib, [constI32(6)], "f");
         auto ch = builder.add(f, constI32('0'), "ch"); 
-        builder.ccall(mod.getOrAddIntrinsicFunction("putchar"), [ch]);
+        builder.ccall(mod.getOrAddCRTFunction("putchar"), [ch]);
 
         builder.ret(constI32(0));
         return main;

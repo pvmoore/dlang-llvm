@@ -49,7 +49,7 @@ public:
         tester.optimise(mod);
         tester.verify(mod);
 
-	    //writefln("main = %s", main.toString);
+	    writefln("\nmain = %s", main.toString);
 
         tester.runOnJIT(mod, main);
 
@@ -183,7 +183,7 @@ private:
         addIncoming(phi, [f.getFunctionParam(0), inc], [coroBeginBB, resumeBB]);
 
         auto p = builder.add(phi, constI32('0'), "p");
-        builder.ccall(mod.getOrAddIntrinsicFunction("putchar"), [p]);
+        builder.ccall(mod.getOrAddCRTFunction("putchar"), [p]);
         /**
             *	return values: -1 = suspend
             *					0 = resume
@@ -197,7 +197,7 @@ private:
     // resume
         builder.positionAtEndOf(resumeBB);
         auto p2 = builder.add(p, constI32(4), "p2");
-        builder.ccall(mod.getOrAddIntrinsicFunction("putchar"), [p2]);
+        builder.ccall(mod.getOrAddCRTFunction("putchar"), [p2]);
 
         auto sus2 = builder.ccall(mod.getOrAddIntrinsicFunction("llvm.coro.suspend"),  [constTokenNone(), constI1(0)], "sw2");
         auto sw2 = builder.switch_(sus2, suspendBB, 2);

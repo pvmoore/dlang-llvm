@@ -93,6 +93,6 @@ public:
         auto str = b.globalString(fmt, "fmt");
         args = [constPointerCast(str, bytePointerType())] ~ args;
 
-        b.ccall(mod.getOrAddIntrinsicFunction("printf"), args);
+        b.ccall(mod.getOrAddCRTFunction("printf"), args);
     }
 }

@@ -100,7 +100,7 @@ private:
 
         builder.ccall(FutureDestroy, [future]);
 
-        builder.ccall(mod.getOrAddIntrinsicFunction("CloseHandle"), [builder.load(threadHandle)]);
+        builder.ccall(mod.getFunction("CloseHandle"), [builder.load(threadHandle)]);
 
         builder.ret(constI32(0));
         return main;

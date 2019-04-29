@@ -5,8 +5,8 @@ import llvm.all;
 final class LLVMBuilder {
 	LLVMBuilderRef ref_;
 
-	this() {
-		this.ref_ = LLVMCreateBuilder();
+	this(LLVMContextRef context = LLVMGetGlobalContext()) {
+		this.ref_ = LLVMCreateBuilderInContext(context);
 	}
 	void destroy() {
 		LLVMDisposeBuilder(ref_);
@@ -19,6 +19,10 @@ final class LLVMBuilder {
 	}
 	void positionAtEndOf(LLVMBasicBlockRef bb) {
 		LLVMPositionBuilderAtEnd(ref_, bb);
+	}
+
+	void setFastMath(bool flag = true) {
+		LLVMSetFastMath(ref_, flag);
 	}
 
 	LLVMValueRef globalString(string str, string name=null) {
@@ -51,7 +55,7 @@ final class LLVMBuilder {
 		return LLVMBuildBr(ref_, bb);
 	}
 	LLVMValueRef condBr(LLVMValueRef if_,
-						LLVMBasicBlockRef then, 
+						LLVMBasicBlockRef then,
 						LLVMBasicBlockRef else_) {
 		return LLVMBuildCondBr(ref_, if_, then, else_);
 	}
@@ -60,7 +64,7 @@ final class LLVMBuilder {
 	}
 	LLVMValueRef invoke(LLVMValueRef fn, LLVMValueRef[] args,
 						LLVMBasicBlockRef then, LLVMBasicBlockRef catch_,
-						string name=null) 
+						string name=null)
 	{
 		return LLVMBuildInvoke(ref_, fn, args.ptr, cast(uint)args.length,
 							   then, catch_, name.toStringz);
@@ -68,7 +72,7 @@ final class LLVMBuilder {
 	LLVMValueRef phi(LLVMTypeRef type, string name=null) {
 		return LLVMBuildPhi(ref_, type, name.toStringz);
 	}
-	LLVMValueRef landingPad(LLVMTypeRef Ty, LLVMValueRef PersFn, 
+	LLVMValueRef landingPad(LLVMTypeRef Ty, LLVMValueRef PersFn,
 							uint NumClauses, string name=null) {
 		return LLVMBuildLandingPad(ref_, Ty, PersFn, NumClauses,
 								   name.toStringz);
@@ -215,11 +219,11 @@ final class LLVMBuilder {
 		return LLVMBuildStore(ref_, Val, Ptr);
 	}
 	LLVMValueRef getElementPointer(LLVMValueRef Pointer, LLVMValueRef[] indices, string name=null) {
-		return LLVMBuildGEP(ref_, Pointer, indices.ptr, 
+		return LLVMBuildGEP(ref_, Pointer, indices.ptr,
 							cast(uint)indices.length, name.toStringz);
 	}
 	LLVMValueRef getElementPointer_inBounds(LLVMValueRef Pointer, LLVMValueRef[] indices, string name=null) {
-		return LLVMBuildInBoundsGEP(ref_, Pointer, indices.ptr, 
+		return LLVMBuildInBoundsGEP(ref_, Pointer, indices.ptr,
 									cast(uint)indices.length, name.toStringz);
 	}
 	LLVMValueRef getElementPointer_struct(LLVMValueRef Pointer, uint index, string name=null) {
@@ -327,19 +331,19 @@ final class LLVMBuilder {
 		return LLVMBuildFence(ref_, ordering, singleThread.toLLVMBool, name.toStringz);
 	}
 	LLVMValueRef atomicRMW(LLVMAtomicRMWBinOp op,
-						   LLVMValueRef PTR, 
+						   LLVMValueRef PTR,
 						   LLVMValueRef Val,
 						   LLVMAtomicOrdering ordering,
 						   bool singleThread) {
 		return LLVMBuildAtomicRMW(ref_, op, PTR, Val, ordering, singleThread.toLLVMBool);
 	}
 	LLVMValueRef atomicCmpXchg(LLVMValueRef Ptr,
-							   LLVMValueRef Cmp, 
+							   LLVMValueRef Cmp,
 							   LLVMValueRef New,
 							   LLVMAtomicOrdering SuccessOrdering,
 							   LLVMAtomicOrdering FailureOrdering,
-							   LLVMBool singleThread) 
-	{ 
+							   LLVMBool singleThread)
+	{
 		return LLVMBuildAtomicCmpXchg(ref_, Ptr, Cmp, New, SuccessOrdering, FailureOrdering, singleThread);
 	}
 

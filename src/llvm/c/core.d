@@ -3,6 +3,7 @@ module llvm.c.core;
 import llvm.c.all;
 
 extern(C) {
+
 	alias LLVMBool = int;
 
 	alias LLVMUseRef = LLVMOpaqueUse*;
@@ -45,6 +46,7 @@ extern(C) {
 	void LLVMInitializeIPA(LLVMPassRegistryRef R);
 	void LLVMInitializeAggressiveInstCombiner(LLVMPassRegistryRef R);
 
+	void LLVMInitializeCoroutines(LLVMPassRegistryRef R);
 
 	void LLVMAddAnalysisPasses(LLVMTargetMachineRef T, LLVMPassManagerRef PM);
 

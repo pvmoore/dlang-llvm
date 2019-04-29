@@ -58,7 +58,7 @@ public:
         auto primes = createPrimes(mod);
         auto main = createMain(mod, primes);
 
-        //writefln("main = %s", main.toString);
+        //writefln("\nmain = %s", main.toString);
         //writefln("primes = %s", primes.toString);
 
         tester.optimise(mod);
@@ -66,7 +66,7 @@ public:
 
         //mod.dumpToConsole();
 
-        //writefln("main = %s", main.toString);
+        writefln("\nmain = %s", main.toString);
 
         tester.runOnJIT(mod, main);
     }
@@ -94,7 +94,7 @@ private:
         void getPromiseAndPutchar() {
             auto p  = coro.buildLoadPromise(hdl, i32Type(), 4);
             auto p2 = builder.add(p, constI32('0'), "p");
-            builder.ccall(mod.getOrAddIntrinsicFunction("putchar"), [p2]);
+            builder.ccall(mod.getOrAddCRTFunction("putchar"), [p2]);
         }
         getPromiseAndPutchar();
 

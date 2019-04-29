@@ -20,22 +20,53 @@ Required software: python 2.7, cmake, visual studio
 4) Edit CMakeLists.txt: 
     - Change LLVM_TARGETS_TO_BUILD from "all" to X86 (Unless you need other targets)
 5) cd \temp\llvm\build
-6) cmake -G "Visual Studio 15 2017 Win64" c:\temp\llvm	
+6) cmake -G "Visual Studio 16 2019" -A x64 c:\temp\llvm	
 7) Open the Visual Studio .sln file in the build directory
-8) Set to Release mode
 
-9) Set everything to C/C++/Code Generation/Runtime Library = /MT (static multithreaded) 
+8)
 
-Ignore these files: 
+9) Add code:
+
+    - Core.cpp
+    extern "C" {
+        void LLVMSetFastMath(LLVMBuilderRef Builder, bool fast = true) {
+          auto fmf = FastMathFlags();
+          if(fast) fmf.setFast(true);
+          unwrap(Builder)->setFastMathFlags(fmf);
+        }
+    }
+    
+    - Coroutines.cpp
+    extern "C" {
+        void LLVMInitializeCoroutines(LLVMPassRegistryRef R) {
+          initializeCoroutines(*unwrap(R));
+        }
+    }
+
+10) Set everything to C/C++/Code Generation/Runtime Library = /MT (static multithreaded) 
+
+    Ignore these files: 
+
+    - Examples/Kaleidoscope
+    
+    - Tests/check
+    - Tests/check-lit
+    - Tests/check-llvm
+    - Tests/llvm-test-depends
+    - Tests/prepare-check-lit
+    - Tests/test-depends
+    - Tests/TestPlugin
+    - Tests/UnitTests
 
     - Tools/llvm-dlltool
     - Tools/llvm-lib
     - Tools/llvm-ranlib
     - Tools/llvm-readelf	
     - Tools/llvm-strip
+    
     - Utils/LLVMVisualizers
 	
-10) Rebuild ALL-BUILD
+11) Rebuild ALL-BUILD
 	
-11) Copy the lib files from build\Release\lib to somwehere safe and point to them in the dub.sdl file (lflags).
+12) Copy the lib files from build\Release\lib to somwehere safe and point to them in the dub.sdl file (lflags).
 
