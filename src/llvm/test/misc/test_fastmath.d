@@ -100,7 +100,7 @@ private:
         auto cmp = builder.fcmp(LLVMRealPredicate.LLVMRealOEQ, a, constF32(1.0f), "cmp");
 
         /// call
-        auto call = builder.ccall(mod.getOrAddIntrinsicFunction("llvm.fabs.f32"), [a], "call");
+        auto call = builder.ccall(mod.getOrAddIntrinsicFunction("fabs", f32Type()), [a], "call");
 
         /// This should not have the 'fast' flag set
         builder.setFastMath(false);
@@ -111,7 +111,7 @@ private:
         builder.fdiv(constF32(1.0f), a);
         builder.frem(constF32(1.0f), a);
         builder.fcmp(LLVMRealPredicate.LLVMRealOEQ, constF32(1.0f), a);
-        builder.ccall(mod.getOrAddIntrinsicFunction("llvm.fabs.f32"), [a]);
+        builder.ccall(mod.getOrAddIntrinsicFunction("fabs", f32Type()), [a]);
 
         builder.ret(constI32(0));
         return main;

@@ -20,6 +20,21 @@ LLVMTypeRef tokenType(LLVMContextRef context=LLVMGetGlobalContext()) {
 	return LLVMTokenTypeInContext(context);
 }
 
+//LLVMTypeRef clone(LLVMTypeRef type) {
+//	assert(!type.isPointer);
+//
+//	if(type.isInteger) {
+//		return LLVMIntType(type.getNumBits);
+//	} else if(type.isF16Type()) {
+//		return f16Type();
+//	} else if(type.isF32Type()) {
+//		return f32Type();
+//	} else if(type.isF64Type()) {
+//		return f64Type();
+//	} else throw new Error("Only works on basic integer or real types");
+//	assert(false);
+//}
+
 //void dump(LLVMTypeRef t) {
 //	LLVMDumpType(t);
 //}
@@ -30,27 +45,62 @@ LLVMTypeKind getTypeEnum(LLVMTypeRef t) {
 	return LLVMGetTypeKind(t);
 }
 uint getNumBits(LLVMTypeRef t) {
+	assert(t.isInteger);
 	return LLVMGetIntTypeWidth(t);
 }
 bool isI1Type(LLVMTypeRef t) {
-	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind &&
-		t.getNumBits == 1;
+	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind && t.getNumBits == 1;
 }
 bool isI8Type(LLVMTypeRef t) {
-	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind &&
-		t.getNumBits == 8;
+	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind && t.getNumBits == 8;
+}
+bool isI16Type(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind && t.getNumBits == 16;
+}
+bool isI32Type(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind && t.getNumBits == 32;
+}
+bool isI64Type(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind && t.getNumBits == 64;
+}
+bool isF16Type(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMHalfTypeKind;
+}
+bool isF32Type(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMFloatTypeKind;
+}
+bool isF64Type(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMDoubleTypeKind;
 }
 bool isReal(LLVMTypeRef t) {
 	LLVMTypeKind kind = t.getTypeEnum();
 	return kind==LLVMTypeKind.LLVMHalfTypeKind ||
-		kind==LLVMTypeKind.LLVMFloatTypeKind ||
-		kind==LLVMTypeKind.LLVMDoubleTypeKind;
+		   kind==LLVMTypeKind.LLVMFloatTypeKind ||
+		   kind==LLVMTypeKind.LLVMDoubleTypeKind;
 }
 bool isInteger(LLVMTypeRef t) {
 	return t.getTypeEnum()==LLVMTypeKind.LLVMIntegerTypeKind;
 }
 bool isPointer(LLVMTypeRef t) {
 	return t.getTypeEnum()==LLVMTypeKind.LLVMPointerTypeKind;
+}
+bool isStruct(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMVectorTypeKind;
+}
+bool isArray(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMArrayTypeKind;
+}
+bool isFunction(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMFunctionTypeKind;
+}
+bool isVector(LLVMTypeRef t) {
+	return t.getTypeEnum()==LLVMTypeKind.LLVMVectorTypeKind;
+}
+bool isIntegerVector(LLVMTypeRef t) {
+	return t.isVector && t.getElementType().isInteger;
+}
+bool isRealVector(LLVMTypeRef t) {
+	return t.isVector && t.getElementType().isReal;
 }
 /// works on array, vector and pointer types
 LLVMTypeRef getElementType(LLVMTypeRef ty) {
