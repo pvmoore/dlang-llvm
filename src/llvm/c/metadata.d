@@ -1,6 +1,6 @@
 module llvm.c.metadata;
 
-import llvm.all;
+import llvm.c.all;
 
 extern(C) {
     uint LLVMGetMDKindIDInContext(LLVMContextRef C, immutable(char)* Name, uint SLen);

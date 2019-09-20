@@ -81,7 +81,7 @@ enum LLVMAttribute : string {
 }
 private __gshared const LLVMAttribute[uint] kindToAttrib;
 
-shared static this() {
+__gshared static this() {
     import std.traits : EnumMembers;
     foreach(e; EnumMembers!LLVMAttribute) {
         string n = cast(string)e;

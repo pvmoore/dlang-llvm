@@ -1,12 +1,12 @@
 module llvm.c.pass;
 
-import llvm.all;
+import llvm.c.all;
 /*
 	CFG  - Control flow graph
 	CSE  - Common subexpression elimination
 	DCE  - Dead code elimination
 	GVN  - Global value numbering
-	LICM - Loop invariant code motion 
+	LICM - Loop invariant code motion
 	SCCP - Sparse conditional constant propagation
 */
 extern(C) {
@@ -39,11 +39,11 @@ extern(C) {
 
 	void LLVMAddBitTrackingDCEPass(LLVMPassManagerRef PM);
 
-	
-	
+
+
 	void LLVMAddMergedLoadStoreMotionPass(LLVMPassManagerRef PM);
 	void LLVMAddIndVarSimplifyPass(LLVMPassManagerRef PM);
-	
+
 	// loop invariant code motion and memory promotion
 	void LLVMAddLICMPass(LLVMPassManagerRef PM);
 	void LLVMAddLoopDeletionPass(LLVMPassManagerRef PM);
@@ -53,24 +53,24 @@ extern(C) {
 	void LLVMAddLoopUnrollPass(LLVMPassManagerRef PM);
 	void LLVMAddLoopUnswitchPass(LLVMPassManagerRef PM);
 	void LLVMAddMemCpyOptPass(LLVMPassManagerRef PM);
-	
+
 	void LLVMAddLowerSwitchPass(LLVMPassManagerRef PM);
 
 	// This pass reassociates commutative expressions in an order that is designed
 	// to promote better constant propagation
 	void LLVMAddReassociatePass(LLVMPassManagerRef PM);
-	
+
 	void LLVMAddScalarReplAggregatesPass(LLVMPassManagerRef PM);
 	void LLVMAddScalarReplAggregatesPassSSA(LLVMPassManagerRef PM);
 	void LLVMAddScalarReplAggregatesPassWithThreshold(LLVMPassManagerRef PM, int Threshold);
-	
+
 	void LLVMAddUnifyFunctionExitNodesPass(LLVMPassManagerRef PM);
-	
-	void LLVMAddTailCallEliminationPass(LLVMPassManagerRef PM);	
+
+	void LLVMAddTailCallEliminationPass(LLVMPassManagerRef PM);
 
 	// Sparse conditional constant propagation
 	void LLVMAddSCCPPass(LLVMPassManagerRef PM);
-	
+
 
 	// demote register to memory
 	void LLVMAddDemoteMemoryToRegisterPass(LLVMPassManagerRef PM);

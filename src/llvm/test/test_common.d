@@ -7,22 +7,22 @@ private:
     LLVMWrapper wrapper;
 public:
     this(LLVMWrapper wrapper) {
-        this.wrapper = wrapper;	
+        this.wrapper = wrapper;
 
-	    wrapper.passManager.addPasses8();
+	    //wrapper.passManager.addPassesO3();
+        wrapper.passManager.addPassesO0();
 
         LLVMLinkInMCJIT();
     }
     auto getWrapper() { return wrapper; }
 
     void optimise(LLVMModule mod) {
-        wrapper.passManager.runOnModule(mod);   
+        wrapper.passManager.runOnModule(mod);
     }
     bool verify(LLVMModule mod) {
         if(!mod.verify()) {
-            writefln("\n!!!!!!! Verify FAILED !!!!!!!!\n");
-            return false;
-        } 
+            throw new Error("\n!!!!!!! Verify FAILED !!!!!!!!\n");
+        }
         writefln("Verify PASSED");
         return true;
     }
@@ -36,7 +36,7 @@ public:
 		if(LLVMCreateMCJITCompilerForModule(&engine, mod.ref_, &options, 1, &error)) {
 			writefln("Error creating JIT %s", error.fromStringz);
 			LLVMDisposeMessage(error);
-		} 
+		}
 
 		writefln("Running main.......\n");
 		auto execResult = LLVMRunFunction(engine, main, 0, null);
@@ -49,9 +49,13 @@ public:
         LLVMRemoveModule(engine, mod.ref_, &o, &errors);
 
 		LLVMDisposeExecutionEngine(engine);
+
+        if(intVal != 0) {
+            throw new Error("\n!!!!  Status code %s !!!!\n".format(intVal));
+        }
 	}
     /**
-     *  Builds a call to printf which will print all args in order. 
+     *  Builds a call to printf which will print all args in order.
      *  Also handles creation of global strings.
      */
     void print(Args...)(LLVMModule mod, Args argList) {
@@ -72,7 +76,7 @@ public:
                 args ~= constI32(arg);
                 fmt  ~= "%d ";
             } else static if(is(typeof(arg)==float) || is(typeof(arg)==double) || is(typeof(arg)==real)) {
-                // printf assumes floats are passed as doubles 
+                // printf assumes floats are passed as doubles
                 args ~= constF64(arg);
                 fmt  ~= "%.4f ";
             } else static if(is(typeof(arg)==bool)) {

@@ -43,6 +43,8 @@ public:
         //mod.dumpToConsole();
 
         tester.runOnJIT(mod, main);
+
+        mod.writeToFileBC("test.bc");
     }
 private:
     /**

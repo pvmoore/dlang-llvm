@@ -89,115 +89,130 @@ final class LLVMPassManager {
 	void addCoroElidePass() { LLVMAddCoroElidePass(ref_); }
 	void addCoroCleanupPass() { LLVMAddCoroCleanupPass(ref_); }
 
-	void addPasses() {
-
+	/**
+	 *	-O0 Optimisation pass order
+	 */
+	void addPassesO0() {
 		addVerifierPass();
+
 		addCoroEarlyPass();
 
 		addGlobalDCEPass();
 		addTypeBasedAliasAnalysisPass();
-		addScopedNoAliasAAPass();
-		addIPSCCPPass();
-		addCalledValuePropagationPass();
-		addGlobalOptimizerPass();
-		addPromoteMemoryToRegisterPass();
-		addDeadArgEliminationPass();
-		addInstructionCombiningPass();
-		
-		addCFGSimplificationPass();
-		addPruneEHPass();
-		addFunctionInliningPass();
+		//addScopedNoAliasAAPass();
+		//addIPSCCPPass();
+		//addCalledValuePropagationPass();
 		addFunctionAttrsPass();
-		addUnifyFunctionExitNodesPass();
-		addScalarReplAggregatesPass();
-		addScalarReplAggregatesPassSSA();
-		addScalarizerPass();
-		addEarlyCSEPass();
-		addJumpThreadingPass();
-		addCorrelatedValuePropagationPass();
-
-		addCFGSimplificationPass();
+		addGlobalOptimizerPass();
+		//addPromoteMemoryToRegisterPass();
+		addConstantMergePass();
+		//addDeadArgEliminationPass();
 		addInstructionCombiningPass();
-		addTailCallEliminationPass();
-
-		addCFGSimplificationPass();
-		addReassociatePass();
-		addLoopRotatePass();
-		addLICMPass();
-		addLoopUnswitchPass();
-
-		addCFGSimplificationPass();
-		addInstructionCombiningPass();
-		addIndVarSimplifyPass();
-		addLoopIdiomPass();
-		addLoopDeletionPass();
-		addLoopUnrollPass();
-		addMergedLoadStoreMotionPass();
-		addGVNPass();
-		addMemCpyOptPass();
-		addSCCPPass();
-		addBitTrackingDCEPass();
-		addInstructionCombiningPass();
-		addJumpThreadingPass();
-		addCorrelatedValuePropagationPass();
+		addFunctionInliningPass();
+		//addPruneEHPass();
+		//addGlobalOptimizerPass();
+		//addGlobalDCEPass();
+		//addArgumentPromotionPass();
+		//addInstructionCombiningPass();
+		//addJumpThreadingPass();
+		//addScalarReplAggregatesPass();
+		//addFunctionAttrsPass();
+		//addLICMPass();
+		//addMergedLoadStoreMotionPass();
+		//addGVNPass();
+		//addMemCpyOptPass();
 		addDeadStoreEliminationPass();
-		addLICMPass();
-		addPartiallyInlineLibCallsPass();
-		addAggressiveDCEPass();
+		//addIndVarSimplifyPass();
+		//addLoopDeletionPass();
+		//addLoopUnrollPass();
+		//addLoopVectorizePass();
+		//addLoopUnrollPass();
+		//addInstructionCombiningPass();
+		//addCFGSimplificationPass();
+		//addIPSCCPPass();
+		//addInstructionCombiningPass();
+		//addBitTrackingDCEPass();
+		//addAlignmentFromAssumptionsPass();
+		//addInstructionCombiningPass();
+		//addJumpThreadingPass();
+		//addCFGSimplificationPass();
+		//addGlobalDCEPass();
+		//addTypeBasedAliasAnalysisPass();
+		//addScopedNoAliasAAPass();
+		//addIPSCCPPass();
+		//addCalledValuePropagationPass();
+		//addGlobalOptimizerPass();
+		//addPromoteMemoryToRegisterPass();
+		//addDeadArgEliminationPass();
+		//addInstructionCombiningPass();
+		//addCFGSimplificationPass();
+		//addPruneEHPass();
+		//addFunctionInliningPass();
+		//addFunctionAttrsPass();
+		//addArgumentPromotionPass();
 
 		addCoroSplitPass();
 
-		addCFGSimplificationPass();
-		addInstructionCombiningPass();
-		addLoopRotatePass();
-		addLoopVectorizePass();
-		addInstructionCombiningPass();
-		addSLPVectorizePass();
+		//addScalarReplAggregatesPass();
+		//addEarlyCSEMemSSAPass();
+		//addJumpThreadingPass();
+		//addCorrelatedValuePropagationPass();
+		//addCFGSimplificationPass();
+		//addAggressiveInstCombinerPass();
+		//addInstructionCombiningPass();
+		//addTailCallEliminationPass();
+		//addCFGSimplificationPass();
+		//addReassociatePass();
+		//addLoopRotatePass();
+		//addLICMPass();
+		//addLoopUnswitchPass();
+		//addCFGSimplificationPass();
+		//addInstructionCombiningPass();
+		//addIndVarSimplifyPass();
+		//addLoopIdiomPass();
+		//addLoopDeletionPass();
+		//addLoopUnrollPass();
+		//addMergedLoadStoreMotionPass();
+		//addGVNPass();
+		//addMemCpyOptPass();
+		//addBitTrackingDCEPass();
+		//addInstructionCombiningPass();
+		//addJumpThreadingPass();
+		//addCorrelatedValuePropagationPass();
+		//addDeadStoreEliminationPass();
+		//addLICMPass();
 
 		addCoroElidePass();
 
-		addCFGSimplificationPass();
-		addInstructionCombiningPass();
-		addLoopUnrollPass();
-		addInstructionCombiningPass();
-		addLICMPass();
-		addAlignmentFromAssumptionsPass();
-		addStripDeadPrototypesPass();
-		addGlobalDCEPass();
-		addConstantMergePass();
-		addLowerExpectIntrinsicPass();
+		//addAggressiveDCEPass();
+		//addCFGSimplificationPass();
+		//addInstructionCombiningPass();
 		addGlobalOptimizerPass();
-		
+		//addGlobalDCEPass();
+		//addLoopRotatePass();
+		//addLoopVectorizePass();
+		//addInstructionCombiningPass();
+		//addCFGSimplificationPass();
+		//addSLPVectorizePass();
+		//addInstructionCombiningPass();
+		//addLoopUnrollPass();
+		//addInstructionCombiningPass();
+		//addLICMPass();
+		//addAlignmentFromAssumptionsPass();
+		//addStripDeadPrototypesPass();
+		//addGlobalDCEPass();
+		//addConstantMergePass();
 		addCFGSimplificationPass();
+
 		addCoroCleanupPass();
 
-		addCFGSimplificationPass();
-		addInstructionCombiningPass();
-		addIndVarSimplifyPass();
-		addLoopIdiomPass();
-		addLoopDeletionPass();
-		addLoopUnrollPass();
-		addMergedLoadStoreMotionPass();
-		addGVNPass();
-		addMemCpyOptPass();
-		addSCCPPass();
-		addBitTrackingDCEPass();
-		addInstructionCombiningPass();
-		addJumpThreadingPass();
-		addCorrelatedValuePropagationPass();
-		addDeadStoreEliminationPass();
-		addLICMPass();
-		addAggressiveDCEPass();
-
-		//addCFGSimplificationPass();
-
-		//addStripSymbolsPass();
 		addVerifierPass();
 	}
+
 	/**
-	 *	Optimisation pass order copied from LLVM 8 opt.exe
+	 *	-O3 Optimisation pass order copied from LLVM 8 opt.exe
 	 */
-	void addPasses8() {
+	void addPassesO3() {
 		addVerifierPass();
  
 		addCoroEarlyPass();

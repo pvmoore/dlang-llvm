@@ -1,14 +1,17 @@
 name "llvm"
 platforms "windows"
+#libs "DynamicLibraryLib"
 
 libs "LLVMAggressiveInstCombine"
 libs "LLVMAnalysis" "LLVMAsmParser" "LLVMAsmPrinter"
-libs "LLVMBinaryFormat" "LLVMBitReader" "LLVMBitWriter"
+libs "LLVMBinaryFormat" "LLVMBitReader" "LLVMBitstreamReader" "LLVMBitWriter"
+#libs "LLVM-C"
 libs "LLVMCodeGen" "LLVMCore"
-libs "LLVMCoroutines" 
+libs "LLVMCoroutines"
 #libs "LLVMCoverage"
 libs "LLVMDebugInfoCodeView"
-#libs "LLVMDebugInfoDWARF"
+libs "LLVMDebugInfoDWARF"
+#libs "LLVMDebugInfoGSYM"
 #libs "LLVMDebugInfoMSF"
 #libs "LLVMDebugInfoPDB"
 libs "LLVMDemangle"
@@ -19,7 +22,6 @@ libs "LLVMExecutionEngine"
 #libs "LLVMFuzzMutate"
 
 libs "LLVMGlobalISel"
-
 libs "LLVMInstCombine" "LLVMInstrumentation"
 #libs "LLVMInterpreter"
 
@@ -27,12 +29,13 @@ libs "LLVMipo"
 
 libs "LLVMIRReader"
 
+#libs "LLVMJITLink"
 
 #libs "LLVMLibDriver" "LLVMLineEditor"
 libs "LLVMLinker"
 #libs "LLVMLTO"
 
-libs "LLVMMC" 
+libs "LLVMMC"
 #libs LLVMMCA
 libs "LLVMMCDisassembler"
 libs "LLVMMCJIT"
@@ -40,20 +43,21 @@ libs "LLVMMCParser"
 #libs "LLVMMIRParser"
 
 libs "LLVMObjCARCOpts" "LLVMObject"
-#libs "LLVMObjectYAML" "LLVMOption"
-#libs "LLVMOPTRemarks"
+libs "LLVMObjectYAML"
+#libs "LLVMOption"
 
 #libs "LLVMOrcJIT"
 
 #libs "LLVMPasses"
 libs "LLVMProfileData"
+libs "LLVMRemarks"
 libs "LLVMRuntimeDyld"
 
 libs "LLVMScalarOpts" "LLVMSelectionDAG" "LLVMSupport"
 #libs "LLVMSymbolize"
 #libs "LLVMTableGen"
 
-libs "LLVMTarget" 
+libs "LLVMTarget"
 #libs "LLVMTestingSupport" "LLVMTextAPI"
 libs "LLVMTransformUtils"
 
@@ -61,7 +65,7 @@ libs "LLVMVectorize"
 
 #libs "LLVMWindowsManifest"
 
-libs "LLVMX86AsmParser" "LLVMX86AsmPrinter" "LLVMX86CodeGen" "LLVMX86Desc"
+libs "LLVMX86AsmParser"  "LLVMX86CodeGen" "LLVMX86Desc"
 #libs "LLVMX86Disassembler"
 libs "LLVMX86Info" "LLVMX86Utils"
 
@@ -69,12 +73,14 @@ libs "LLVMX86Info" "LLVMX86Utils"
 
 #libs "LTO"
 
+libs "Remarks"
+
 
 
 ##############################################
 
-versions "LLVM_8"
-lflags "/LIBPATH:C:/work/llvm-8.0.0/lib/"
+versions "LLVM_9"
+lflags "/LIBPATH:C:/work/llvm-9.0.0/lib/"
 
 
 buildType "debug" {
@@ -88,9 +94,9 @@ buildType "release" {
 
 configuration "test" {
 	mainSourceFile "src/llvm/test/test.d"
+
 	targetType "executable"
 	targetName "bin-test-llvm"
-
 }
 configuration "library" {
 	targetType "library"
