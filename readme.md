@@ -27,7 +27,7 @@ Required software: python 2.7, cmake, visual studio
 
 9) Add code:
 
-    - Core.cpp
+    - Libraries/LLVMCore/Core.cpp
     ```
     extern "C" {
         void LLVMSetFastMath(LLVMBuilderRef Builder, bool fast = true) {
@@ -38,7 +38,7 @@ Required software: python 2.7, cmake, visual studio
     }
     ```
 
-    - Coroutines.cpp
+    - Libraries/LLVMCoroutines/Coroutines.cpp
     ```
     extern "C" {
         void LLVMInitializeCoroutines(LLVMPassRegistryRef R) {
@@ -52,6 +52,11 @@ Required software: python 2.7, cmake, visual studio
     Ignore these files:
 
     - Examples/Kaleidoscope
+
+    - Loadable Modules/*
+    - Misc/*
+    - Tablegenning/*
+
 
     - Tests/check
     - Tests/check-lit
