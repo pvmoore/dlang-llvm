@@ -1,11 +1,11 @@
 name "llvm"
 platforms "windows"
 #libs "DynamicLibraryLib"
-
 libs "LLVMAggressiveInstCombine"
 libs "LLVMAnalysis" "LLVMAsmParser" "LLVMAsmPrinter"
 libs "LLVMBinaryFormat" "LLVMBitReader" "LLVMBitstreamReader" "LLVMBitWriter"
 #libs "LLVM-C"
+libs "LLVMCFGuard"
 libs "LLVMCodeGen" "LLVMCore"
 libs "LLVMCoroutines"
 #libs "LLVMCoverage"
@@ -16,9 +16,9 @@ libs "LLVMDebugInfoDWARF"
 #libs "LLVMDebugInfoPDB"
 libs "LLVMDemangle"
 #libs "LLVMDlltoolDriver"
-
+#libs "LLVMDWARFLinker"
 libs "LLVMExecutionEngine"
-
+#libs "LLVMFrontendOpenMP"
 #libs "LLVMFuzzMutate"
 
 libs "LLVMGlobalISel"
@@ -36,7 +36,7 @@ libs "LLVMLinker"
 #libs "LLVMLTO"
 
 libs "LLVMMC"
-#libs LLVMMCA
+#libs "LLVMMCA"
 libs "LLVMMCDisassembler"
 libs "LLVMMCJIT"
 libs "LLVMMCParser"
@@ -45,7 +45,7 @@ libs "LLVMMCParser"
 libs "LLVMObjCARCOpts" "LLVMObject"
 libs "LLVMObjectYAML"
 #libs "LLVMOption"
-
+#libs "LLVMOrcError"
 #libs "LLVMOrcJIT"
 
 #libs "LLVMPasses"
@@ -54,11 +54,14 @@ libs "LLVMRemarks"
 libs "LLVMRuntimeDyld"
 
 libs "LLVMScalarOpts" "LLVMSelectionDAG" "LLVMSupport"
+
 #libs "LLVMSymbolize"
 #libs "LLVMTableGen"
+#libs "LLVMTableGenGlobalISel"
 
 libs "LLVMTarget"
-#libs "LLVMTestingSupport" "LLVMTextAPI"
+#libs "LLVMTestingSupport"
+libs "LLVMTextAPI"
 libs "LLVMTransformUtils"
 
 libs "LLVMVectorize"
@@ -79,9 +82,8 @@ libs "Remarks"
 
 ##############################################
 
-versions "LLVM_9"
-lflags "/LIBPATH:C:/work/llvm-9.0.1/lib/"
-
+versions "LLVM_10"
+lflags "/LIBPATH:C:/work/llvm-10.0.0/lib/"
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"

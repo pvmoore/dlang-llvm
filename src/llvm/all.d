@@ -5,6 +5,9 @@ public:
 version(LLVM_9) {
     pragma(msg,"Using LLVM 9.0.1");
 }
+version(LLVM_10) {
+    pragma(msg,"Using LLVM 10.0.0");
+}
 
 import std.stdio    : writeln, writefln;
 import std.string   : toStringz, fromStringz;
