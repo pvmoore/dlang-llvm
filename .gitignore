@@ -17,3 +17,5 @@ temp.*
 text.*
 test.*
 opts*.txt
+
+*.lnk
