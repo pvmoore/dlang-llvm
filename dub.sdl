@@ -4,11 +4,13 @@ platforms "windows"
 libs "LLVMAggressiveInstCombine"
 libs "LLVMAnalysis" "LLVMAsmParser" "LLVMAsmPrinter"
 libs "LLVMBinaryFormat" "LLVMBitReader" "LLVMBitstreamReader" "LLVMBitWriter"
+
 #libs "LLVM-C"
 libs "LLVMCFGuard"
 libs "LLVMCodeGen" "LLVMCore"
 libs "LLVMCoroutines"
 #libs "LLVMCoverage"
+
 libs "LLVMDebugInfoCodeView"
 libs "LLVMDebugInfoDWARF"
 #libs "LLVMDebugInfoGSYM"
@@ -17,7 +19,13 @@ libs "LLVMDebugInfoDWARF"
 libs "LLVMDemangle"
 #libs "LLVMDlltoolDriver"
 #libs "LLVMDWARFLinker"
+
 libs "LLVMExecutionEngine"
+#libs "LLVMExtensions"
+
+#libs "LLVMFrontendOpenACC"
+libs "LLVMFrontendOpenMP"
+
 #libs "LLVMFrontendOpenMP"
 #libs "LLVMFuzzMutate"
 
@@ -70,7 +78,8 @@ libs "LLVMVectorize"
 
 libs "LLVMX86AsmParser"  "LLVMX86CodeGen" "LLVMX86Desc"
 #libs "LLVMX86Disassembler"
-libs "LLVMX86Info" "LLVMX86Utils"
+libs "LLVMX86Info"
+#libs "LLVMX86Utils"
 
 #libs "LLVMXRay"
 
@@ -82,8 +91,8 @@ libs "Remarks"
 
 ##############################################
 
-versions "LLVM_10"
-lflags "/LIBPATH:C:/work/llvm-10.0.0/lib/"
+versions "LLVM_11"
+lflags "/LIBPATH:C:/work/llvm-11.0.0/lib"
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"
