@@ -12,10 +12,10 @@ logs/
 
 *.exe
 *.lib
+*.lnk
 
 temp.*
 text.*
 test.*
 opts*.txt
 
-*.lnk
