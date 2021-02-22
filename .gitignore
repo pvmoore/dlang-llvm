@@ -16,6 +16,6 @@ logs/
 
 temp.*
 text.*
-test.*
+test.bc
 opts*.txt
 
