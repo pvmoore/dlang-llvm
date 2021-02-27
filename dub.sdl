@@ -92,7 +92,7 @@ libs "Remarks"
 ##############################################
 
 versions "LLVM_11"
-lflags "/LIBPATH:C:/work/llvm-11.0.1/lib"
+lflags "/LIBPATH:C:/work/llvm-11.1.0/lib"
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"
