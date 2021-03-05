@@ -81,27 +81,29 @@ enum LLVMOpcode {
 	LLVMCatchPad       = 63,
 	LLVMCleanupPad     = 64,
 	LLVMCatchSwitch    = 65
-}  
+}
 
 enum LLVMTypeKind{
-	LLVMVoidTypeKind,        /**< type with no size */
-	LLVMHalfTypeKind,        /**< 16 bit floating point type */
-	LLVMFloatTypeKind,       /**< 32 bit floating point type */
-	LLVMDoubleTypeKind,      /**< 64 bit floating point type */
-	LLVMX86_FP80TypeKind,    /**< 80 bit floating point type (X87) */
-	LLVMFP128TypeKind,       /**< 128 bit floating point type (112-bit mantissa)*/
-	LLVMPPC_FP128TypeKind,   /**< 128 bit floating point type (two 64-bits) */
-	LLVMLabelTypeKind,       /**< Labels */
-	LLVMIntegerTypeKind,     /**< Arbitrary bit width integers */
-	LLVMFunctionTypeKind,    /**< Functions */
-	LLVMStructTypeKind,      /**< Structures */
-	LLVMArrayTypeKind,       /**< Arrays */
-	LLVMPointerTypeKind,     /**< Pointers */
-	LLVMVectorTypeKind,      /**< SIMD 'packed' format, or other vector type */
-	LLVMMetadataTypeKind,    /**< Metadata */
-	LLVMX86_MMXTypeKind,     /**< X86 MMX */
-	LLVMTokenTypeKind        /**< Tokens */
-} 
+	LLVMVoidTypeKind,        	/**< type with no size */
+	LLVMHalfTypeKind,        	/**< 16 bit floating point type */
+	LLVMFloatTypeKind,       	/**< 32 bit floating point type */
+	LLVMDoubleTypeKind,      	/**< 64 bit floating point type */
+	LLVMX86_FP80TypeKind,    	/**< 80 bit floating point type (X87) */
+	LLVMFP128TypeKind,       	/**< 128 bit floating point type (112-bit mantissa)*/
+	LLVMPPC_FP128TypeKind,   	/**< 128 bit floating point type (two 64-bits) */
+	LLVMLabelTypeKind,       	/**< Labels */
+	LLVMIntegerTypeKind,     	/**< Arbitrary bit width integers */
+	LLVMFunctionTypeKind,    	/**< Functions */
+	LLVMStructTypeKind,      	/**< Structures */
+	LLVMArrayTypeKind,       	/**< Arrays */
+	LLVMPointerTypeKind,     	/**< Pointers */
+	LLVMVectorTypeKind,      	/**< SIMD 'packed' format, or other vector type */
+	LLVMMetadataTypeKind,    	/**< Metadata */
+	LLVMX86_MMXTypeKind,     	/**< X86 MMX */
+	LLVMTokenTypeKind,        	/**< Tokens */
+	LLVMScalableVectorTypeKind, /**< Scalable SIMD vector type */
+  	LLVMBFloatTypeKind     		/**< 16 bit brain floating point type */
+}
 
 enum LLVMLinkage {
 	LLVMExternalLinkage,    /**< Externally visible function */
@@ -127,7 +129,7 @@ enum LLVMVisibility{
 	LLVMDefaultVisibility,  /**< The GV is visible */
 	LLVMHiddenVisibility,   /**< The GV is hidden */
 	LLVMProtectedVisibility /**< The GV is protected */
-} 
+}
 
 enum LLVMCallConv : uint {
 	LLVMCCallConv           = 0,
@@ -137,7 +139,7 @@ enum LLVMCallConv : uint {
 	LLVMAnyRegCallConv      = 13,
 	LLVMX86StdcallCallConv  = 64,
 	LLVMX86FastcallCallConv = 65
-} 
+}
 
 enum LLVMIntPredicate {
 	LLVMIntEQ = 32, /**< equal */
@@ -150,7 +152,7 @@ enum LLVMIntPredicate {
 	LLVMIntSGE,     /**< signed greater or equal */
 	LLVMIntSLT,     /**< signed less than */
 	LLVMIntSLE      /**< signed less or equal */
-} 
+}
 
 enum LLVMRealPredicate {
 	LLVMRealPredicateFalse, /**< Always false (always folded) */
@@ -169,7 +171,7 @@ enum LLVMRealPredicate {
 	LLVMRealULE,            /**< True if unordered, less than, or equal */
 	LLVMRealUNE,            /**< True if unordered or not equal */
 	LLVMRealPredicateTrue   /**< Always true (always folded) */
-} 
+}
 
 enum LLVMThreadLocalMode {
 	LLVMNotThreadLocal = 0,
@@ -177,11 +179,11 @@ enum LLVMThreadLocalMode {
 	LLVMLocalDynamicTLSModel,
 	LLVMInitialExecTLSModel,
 	LLVMLocalExecTLSModel
-} 
+}
 
 enum LLVMAtomicOrdering {
 	LLVMAtomicOrderingNotAtomic = 0, /**< A load or store which is not atomic */
-	
+
 	LLVMAtomicOrderingUnordered = 1, /**< Lowest level of atomicity, guarantees
 										somewhat sane results, lock free. */
 	LLVMAtomicOrderingMonotonic = 2, /**< guarantees that if you take all the
@@ -204,7 +206,7 @@ enum LLVMAtomicOrdering {
 													between all
 													SequentiallyConsistent
 													operations. */
-} 
+}
 
 enum LLVMAtomicRMWBinOp {
     LLVMAtomicRMWBinOpXchg, /**< Set the new value and return the one old */
@@ -220,40 +222,46 @@ enum LLVMAtomicRMWBinOp {
 								original using a signed comparison and return the old one */
 	LLVMAtomicRMWBinOpUMax, /**< Sets the value if it's greater than the
 								original using an unsigned comparison and return the old one */
-	LLVMAtomicRMWBinOpUMin 	/**< Sets the value if it's greater than the
+	LLVMAtomicRMWBinOpUMin, /**< Sets the value if it's greater than the
 								original using an unsigned comparison  and return the old one */
-} 
+	LLVMAtomicRMWBinOpFAdd, /**< Add a floating point value and return the old one */
+	LLVMAtomicRMWBinOpFSub  /**< Subtract a floating point value and return the old one */
+}
 
 enum LLVMCodeModel {
     LLVMCodeModelDefault,
 	LLVMCodeModelJITDefault,
+	LLVMCodeModelTiny,
 	LLVMCodeModelSmall,
 	LLVMCodeModelKernel,
 	LLVMCodeModelMedium,
 	LLVMCodeModelLarge
-} 
+}
 
 enum LLVMCodeGenFileType{
     LLVMAssemblyFile,
 	LLVMObjectFile
-} 
+}
 
 enum LLVMCodeGenOptLevel {
     LLVMCodeGenLevelNone,
-	LLVMCodeGenLevelLess,
-	LLVMCodeGenLevelDefault,
-	LLVMCodeGenLevelAggressive
-} 
+    LLVMCodeGenLevelLess,
+    LLVMCodeGenLevelDefault,
+    LLVMCodeGenLevelAggressive
+}
 
 enum LLVMRelocMode {
     LLVMRelocDefault,
-	LLVMRelocStatic,
-	LLVMRelocPIC,
-	LLVMRelocDynamicNoPic
-} 
+    LLVMRelocStatic,
+    LLVMRelocPIC,
+    LLVMRelocDynamicNoPic,
+    LLVMRelocROPI,
+    LLVMRelocRWPI,
+    LLVMRelocROPI_RWPI
+}
 
 enum LLVMVerifierFailureAction {
 	LLVMAbortProcessAction, /* verifier will print to stderr and abort() */
 	LLVMPrintMessageAction, /* verifier will print to stderr and return 1 */
 	LLVMReturnStatusAction  /* verifier will just return 1 */
-} 
+}
