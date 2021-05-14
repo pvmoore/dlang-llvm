@@ -6,7 +6,7 @@
 
 ## Requirements
 - Dlang https://dlang.org/
-- LLVM 11 http://llvm.org/
+- LLVM 12 http://llvm.org/
 
 LLVM .lib files are required (statically compiled).
 
@@ -69,6 +69,7 @@ Required software: python 2.7, cmake, visual studio
 
 
     - Tools/llvm-addr2line
+    - Tools/llvm-bitcode-strip
     - Tools/llvm-dlltool
     - Tools/llvm-install-name-tool
     - Tools/llvm-lib

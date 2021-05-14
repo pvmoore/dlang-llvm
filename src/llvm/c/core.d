@@ -31,7 +31,7 @@ extern(C) {
 
 	void LLVMInitializeCore(LLVMPassRegistryRef R);
 	void LLVMShutdown();
-	
+
 	LLVMPassRegistryRef LLVMGetGlobalPassRegistry();
 	void LLVMInitializeScalarOpts(LLVMPassRegistryRef R);
 	void LLVMInitializeAnalysis(LLVMPassRegistryRef R);
@@ -58,10 +58,10 @@ extern(C) {
 	char * LLVMGetTargetDescription(LLVMTargetRef T);
 
 	LLVMTargetMachineRef LLVMCreateTargetMachine(LLVMTargetRef T,
-												 immutable(char)* Triple, 
-												 immutable(char)* CPU, 
+												 immutable(char)* Triple,
+												 immutable(char)* CPU,
 												 immutable(char)* Features,
-												 LLVMCodeGenOptLevel Level, 
+												 LLVMCodeGenOptLevel Level,
 												 LLVMRelocMode Reloc,
 												 LLVMCodeModel CodeModel);
 	char* LLVMGetTargetMachineCPU(LLVMTargetMachineRef T);
@@ -93,8 +93,8 @@ extern(C) {
 	char* LLVMGetBufferStart(LLVMMemoryBufferRef MemBuf);
 	size_t LLVMGetBufferSize(LLVMMemoryBufferRef MemBuf);
 	void LLVMDisposeMemoryBuffer(LLVMMemoryBufferRef MemBuf);
-	
-	
+
+
 	//===--------------------------------------------- All targets
 	void LLVMInitializeAllTargetInfos();
 	void LLVMInitializeAllTargets();

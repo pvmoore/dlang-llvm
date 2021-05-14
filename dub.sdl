@@ -1,6 +1,10 @@
 name "llvm"
 platforms "windows"
+
 #libs "DynamicLibraryLib"
+
+#libs "ExampleIRTransforms"
+
 libs "LLVMAggressiveInstCombine"
 libs "LLVMAnalysis" "LLVMAsmParser" "LLVMAsmPrinter"
 libs "LLVMBinaryFormat" "LLVMBitReader" "LLVMBitstreamReader" "LLVMBitWriter"
@@ -23,18 +27,20 @@ libs "LLVMDemangle"
 libs "LLVMExecutionEngine"
 #libs "LLVMExtensions"
 
+#libs "LLVMFileCheck"
 #libs "LLVMFrontendOpenACC"
 libs "LLVMFrontendOpenMP"
-
-#libs "LLVMFrontendOpenMP"
 #libs "LLVMFuzzMutate"
 
 libs "LLVMGlobalISel"
+
+#libs "LLVMHelloNew"
+
 libs "LLVMInstCombine" "LLVMInstrumentation"
+#libs "LLVMInterfaceStub"
 #libs "LLVMInterpreter"
 
 libs "LLVMipo"
-
 libs "LLVMIRReader"
 
 #libs "LLVMJITLink"
@@ -53,8 +59,9 @@ libs "LLVMMCParser"
 libs "LLVMObjCARCOpts" "LLVMObject"
 libs "LLVMObjectYAML"
 #libs "LLVMOption"
-#libs "LLVMOrcError"
 #libs "LLVMOrcJIT"
+#libs "LLVMOrcShared"
+#libs "LLVMOrcTargetProcess"
 
 #libs "LLVMPasses"
 libs "LLVMProfileData"
@@ -79,7 +86,6 @@ libs "LLVMVectorize"
 libs "LLVMX86AsmParser"  "LLVMX86CodeGen" "LLVMX86Desc"
 #libs "LLVMX86Disassembler"
 libs "LLVMX86Info"
-#libs "LLVMX86Utils"
 
 #libs "LLVMXRay"
 
@@ -91,8 +97,12 @@ libs "Remarks"
 
 ##############################################
 
-versions "LLVM_11"
-lflags "/LIBPATH:C:/work/llvm-11.1.0/lib"
+#versions "LLVM_11"
+#lflags "/LIBPATH:C:/work/llvm-11.1.0/lib"
+
+versions "LLVM_12"
+lflags "/LIBPATH:C:/work/llvm-12.0.0/lib"
+
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"

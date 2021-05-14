@@ -26,7 +26,8 @@ extern(C) {
 	void LLVMAddVerifierPass(LLVMPassManagerRef PM);
 
 	////=====--------------------------- interesting ones here
-	void LLVMAddConstantPropagationPass(LLVMPassManagerRef PM);
+	//void LLVMAddConstantPropagationPass(LLVMPassManagerRef PM);
+	void LLVMAddDCEPass(LLVMPassManagerRef PM);
 	void LLVMAddAggressiveDCEPass(LLVMPassManagerRef PM);
 	void LLVMAddDeadStoreEliminationPass(LLVMPassManagerRef PM);
 
@@ -39,7 +40,7 @@ extern(C) {
 
 	void LLVMAddBitTrackingDCEPass(LLVMPassManagerRef PM);
 
-
+	void LLVMAddInstructionSimplifyPass(LLVMPassManagerRef PM);
 
 	void LLVMAddMergedLoadStoreMotionPass(LLVMPassManagerRef PM);
 	void LLVMAddIndVarSimplifyPass(LLVMPassManagerRef PM);
@@ -52,6 +53,9 @@ extern(C) {
 	void LLVMAddLoopRerollPass(LLVMPassManagerRef PM);
 	void LLVMAddLoopUnrollPass(LLVMPassManagerRef PM);
 	void LLVMAddLoopUnswitchPass(LLVMPassManagerRef PM);
+	void LLVMAddLoopFlattenPass(LLVMPassManagerRef PM);
+	void LLVMAddLoopUnrollAndJamPass(LLVMPassManagerRef PM);
+
 	void LLVMAddMemCpyOptPass(LLVMPassManagerRef PM);
 
 	void LLVMAddLowerSwitchPass(LLVMPassManagerRef PM);
@@ -70,6 +74,8 @@ extern(C) {
 
 	// Sparse conditional constant propagation
 	void LLVMAddSCCPPass(LLVMPassManagerRef PM);
+
+	void LLVMAddLowerConstantIntrinsicsPass(LLVMPassManagerRef PM);
 
 
 	// demote register to memory
@@ -96,7 +102,7 @@ extern(C) {
 	void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef PM);
 	void LLVMAddGlobalDCEPass(LLVMPassManagerRef PM);
 	void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef PM);
-	void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef PM);
+	//void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef PM);
 	void LLVMAddPruneEHPass(LLVMPassManagerRef PM);
 	void LLVMAddIPSCCPPass(LLVMPassManagerRef PM);
 	void LLVMAddInternalizePass(LLVMPassManagerRef PM, uint AllButMain);

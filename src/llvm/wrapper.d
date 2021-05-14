@@ -17,7 +17,7 @@ final class LLVMWrapper {
 		LLVMInitializeTarget(passRegistry);
 		LLVMInitializeTransformUtils(passRegistry);
 		LLVMInitializeInstCombine(passRegistry);
-		LLVMInitializeAggressiveInstCombiner(passRegistry);  
+		LLVMInitializeAggressiveInstCombiner(passRegistry);
 		LLVMInitializeCodeGen(passRegistry);
 		LLVMInitializeAnalysis(passRegistry);
 		LLVMInitializeScalarOpts(passRegistry);
@@ -44,7 +44,7 @@ final class LLVMWrapper {
 
 		modules[name] = m;
 		return m;
-	}  
+	}
 	/// links module b into dest and destroys module b
 	/// returns true on success
 	bool linkModules(LLVMModule dest, LLVMModule[] others...) {

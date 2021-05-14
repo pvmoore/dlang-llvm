@@ -27,7 +27,7 @@ final class LLVMPassManager {
 
 	void addCorrelatedValuePropagationPass() { LLVMAddCorrelatedValuePropagationPass(ref_); }
 	void addReassociatePass() { LLVMAddReassociatePass(ref_); }
-	void addConstantPropagationPass() { LLVMAddConstantPropagationPass(ref_); }
+	//void addConstantPropagationPass() { LLVMAddConstantPropagationPass(ref_); }
 	void addLowerExpectIntrinsicPass() { LLVMAddLowerExpectIntrinsicPass(ref_); }
 	void addDemoteMemoryToRegisterPass() { LLVMAddDemoteMemoryToRegisterPass(ref_); }
 	void addTailCallEliminationPass() { LLVMAddTailCallEliminationPass(ref_); }
@@ -36,10 +36,10 @@ final class LLVMPassManager {
 	void addScalarReplAggregatesPassSSA() { LLVMAddScalarReplAggregatesPassSSA(ref_); }
 	void addSCCPPass() { LLVMAddSCCPPass(ref_); }
 	void addPromoteMemoryToRegisterPass() { LLVMAddPromoteMemoryToRegisterPass(ref_); }
-	void addLowerSwitchPass() { LLVMAddLowerSwitchPass(ref_); }	
+	void addLowerSwitchPass() { LLVMAddLowerSwitchPass(ref_); }
 	void addPartiallyInlineLibCallsPass() { LLVMAddPartiallyInlineLibCallsPass(ref_); }
 	void addMemCpyOptPass() { LLVMAddMemCpyOptPass(ref_); }
-	void addLoopUnswitchPass() { LLVMAddLoopUnswitchPass(ref_); } 
+	void addLoopUnswitchPass() { LLVMAddLoopUnswitchPass(ref_); }
 	void addLoopUnrollPass() { LLVMAddLoopUnrollPass(ref_); }
 	void addLoopRerollPass() { LLVMAddLoopRerollPass(ref_); }
 	void addLoopRotatePass() { LLVMAddLoopRotatePass(ref_); }
@@ -47,7 +47,7 @@ final class LLVMPassManager {
 	void addLoopDeletionPass() { LLVMAddLoopDeletionPass(ref_); }
 	//void addLoopSinkPass() { LLVMAddLoopSinkPass(ref_); }
 	void addLICMPass() { LLVMAddLICMPass(ref_); }
-	void addJumpThreadingPass() { LLVMAddJumpThreadingPass(ref_); }	
+	void addJumpThreadingPass() { LLVMAddJumpThreadingPass(ref_); }
 	void addInstructionCombiningPass() { LLVMAddInstructionCombiningPass(ref_); }
 	void addIndVarSimplifyPass() { LLVMAddIndVarSimplifyPass(ref_); }
 	void addMergedLoadStoreMotionPass() { LLVMAddMergedLoadStoreMotionPass(ref_); }
@@ -62,6 +62,12 @@ final class LLVMPassManager {
 	void addUnifyFunctionExitNodesPass() { LLVMAddUnifyFunctionExitNodesPass(ref_); }
 	void addCalledValuePropagationPass() { LLVMAddCalledValuePropagationPass(ref_); }
 
+	void addDCEPass() { LLVMAddDCEPass(ref_); }
+	void addInstructionSimplifyPass() { LLVMAddInstructionSimplifyPass(ref_); }
+	//void addLoopFlattenPass() { LLVMAddLoopFlattenPass(ref_); }
+	void addLoopUnrollAndJamPass() { LLVMAddLoopUnrollAndJamPass(ref_); }
+	void addLowerConstantIntrinsicsPass() { LLVMAddLowerConstantIntrinsicsPass(ref_); }
+
 	// IPO.cpp
 	void addArgumentPromotionPass() { LLVMAddArgumentPromotionPass(ref_); }
 	void addConstantMergePass() { LLVMAddConstantMergePass(ref_); }
@@ -71,7 +77,7 @@ final class LLVMPassManager {
 	void addAlwaysInlinerPass() { LLVMAddAlwaysInlinerPass(ref_); }
 	void addGlobalDCEPass() { LLVMAddGlobalDCEPass(ref_); }
 	void addGlobalOptimizerPass() { LLVMAddGlobalOptimizerPass(ref_); }
-	void addIPConstantPropagationPass() { LLVMAddIPConstantPropagationPass(ref_); }
+	//void addIPConstantPropagationPass() { LLVMAddIPConstantPropagationPass(ref_); }
 	void addPruneEHPass() { LLVMAddPruneEHPass(ref_); }
 	void addIPSCCPPass() { LLVMAddIPSCCPPass(ref_); }
 	void addInternalizePass(uint AllButMain) { LLVMAddInternalizePass(ref_, AllButMain); }
@@ -209,12 +215,14 @@ final class LLVMPassManager {
 		addVerifierPass();
 	}
 
+	// TODO - add passes from LLVM 12
+
 	/**
 	 *	-O3 Optimisation pass order copied from LLVM 8 opt.exe
 	 */
 	void addPassesO3() {
 		addVerifierPass();
- 
+
 		addCoroEarlyPass();
 
 		addGlobalDCEPass();
@@ -226,13 +234,13 @@ final class LLVMPassManager {
 		addGlobalOptimizerPass();
 		addPromoteMemoryToRegisterPass();
 		addConstantMergePass();
-		addDeadArgEliminationPass(); 
+		addDeadArgEliminationPass();
 		addInstructionCombiningPass();
 		addFunctionInliningPass();
 		addPruneEHPass();
 		addGlobalOptimizerPass();
 		addGlobalDCEPass();
-		addArgumentPromotionPass(); 
+		addArgumentPromotionPass();
 		addInstructionCombiningPass();
 		addJumpThreadingPass();
 		addScalarReplAggregatesPass();
@@ -270,7 +278,7 @@ final class LLVMPassManager {
 		addFunctionInliningPass();
 		addFunctionAttrsPass();
 		addArgumentPromotionPass();
-		
+
 		addCoroSplitPass();
 
 		addScalarReplAggregatesPass();
@@ -288,7 +296,7 @@ final class LLVMPassManager {
 		addLoopUnswitchPass();
 		addCFGSimplificationPass();
 		addInstructionCombiningPass();
-		addIndVarSimplifyPass(); 
+		addIndVarSimplifyPass();
 		addLoopIdiomPass();
 		addLoopDeletionPass();
 		addLoopUnrollPass();
@@ -323,7 +331,7 @@ final class LLVMPassManager {
 		addGlobalDCEPass();
 		addConstantMergePass();
 		addCFGSimplificationPass();
-		
+
 		addCoroCleanupPass();
 
 		addVerifierPass();
