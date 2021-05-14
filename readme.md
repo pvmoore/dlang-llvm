@@ -11,7 +11,7 @@
 LLVM .lib files are required (statically compiled).
 
 ## Generating the LLVM .lib files (On Windows)
-Required software: python 2.7, cmake, visual studio
+Required software: python 3, cmake, visual studio
 
 1) Download the source from the LLVM website to c:\temp\llvm
 2) create a 'build' directory eg.
