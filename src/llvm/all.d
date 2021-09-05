@@ -2,11 +2,8 @@ module llvm.all;
 
 public:
 
-version(LLVM_11) {
-    pragma(msg,"Using LLVM 11.1.0");
-}
 version(LLVM_12) {
-    pragma(msg,"Using LLVM 12.0.0");
+    pragma(msg,"Using LLVM 12.0.1");
 }
 
 import std.stdio    : writeln, writefln;
