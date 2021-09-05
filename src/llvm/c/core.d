@@ -46,8 +46,6 @@ extern(C) {
 	void LLVMInitializeIPA(LLVMPassRegistryRef R);
 	void LLVMInitializeAggressiveInstCombiner(LLVMPassRegistryRef R);
 
-	void LLVMInitializeCoroutines(LLVMPassRegistryRef R);
-
 	void LLVMAddAnalysisPasses(LLVMTargetMachineRef T, LLVMPassManagerRef PM);
 
 

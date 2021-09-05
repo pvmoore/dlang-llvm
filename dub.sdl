@@ -101,7 +101,7 @@ libs "Remarks"
 #lflags "/LIBPATH:C:/work/llvm-11.1.0/lib"
 
 versions "LLVM_12"
-lflags "/LIBPATH:C:/work/llvm-12.0.0/lib"
+lflags "/LIBPATH:C:/work/llvm-12.0.1/lib"
 
 
 buildType "debug" {

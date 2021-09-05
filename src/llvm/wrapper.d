@@ -24,7 +24,6 @@ final class LLVMWrapper {
 		LLVMInitializeVectorization(passRegistry);
 		LLVMInitializeIPO(passRegistry);
 		LLVMInitializeIPA(passRegistry);
-		LLVMInitializeCoroutines(passRegistry);
 
 
 		this.x86Target   = new LLVMX86Target();

@@ -38,15 +38,6 @@ Required software: python 3, cmake, visual studio
     }
     ```
 
-    - Libraries/LLVMCoroutines/Coroutines.cpp
-    ```
-    extern "C" {
-        void LLVMInitializeCoroutines(LLVMPassRegistryRef R) {
-          initializeCoroutines(*unwrap(R));
-        }
-    }
-    ```
-
 10) Set everything to C/C++/Code Generation/Runtime Library = /MT (static multithreaded)
 
     Ignore these files:
