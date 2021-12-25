@@ -23,8 +23,10 @@ libs "LLVMDebugInfoDWARF"
 libs "LLVMDemangle"
 #libs "LLVMDlltoolDriver"
 #libs "LLVMDWARFLinker"
+#libs "LLVMDWP"
 
 libs "LLVMExecutionEngine"
+#libs "LLVMExegesis" "LLVMExegesisX86"
 #libs "LLVMExtensions"
 
 #libs "LLVMFileCheck"
@@ -61,7 +63,7 @@ libs "LLVMObjectYAML"
 #libs "LLVMOption"
 #libs "LLVMOrcJIT"
 #libs "LLVMOrcShared"
-#libs "LLVMOrcTargetProcess"
+libs "LLVMOrcTargetProcess"
 
 #libs "LLVMPasses"
 libs "LLVMProfileData"
@@ -71,9 +73,9 @@ libs "LLVMRuntimeDyld"
 libs "LLVMScalarOpts" "LLVMSelectionDAG" "LLVMSupport"
 
 #libs "LLVMSymbolize"
+
 #libs "LLVMTableGen"
 #libs "LLVMTableGenGlobalISel"
-
 libs "LLVMTarget"
 #libs "LLVMTestingSupport"
 libs "LLVMTextAPI"
@@ -100,9 +102,11 @@ libs "Remarks"
 #versions "LLVM_11"
 #lflags "/LIBPATH:C:/work/llvm-11.1.0/lib"
 
-versions "LLVM_12"
-lflags "/LIBPATH:C:/work/llvm-12.0.1/lib"
+#versions "LLVM_12"
+#lflags "/LIBPATH:C:/work/llvm-12.0.1/lib"
 
+versions "LLVM_13"
+lflags "/LIBPATH:C:/work/llvm-13.0.0/lib"
 
 buildType "debug" {
 	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"

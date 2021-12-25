@@ -6,7 +6,7 @@
 
 ## Requirements
 - Dlang https://dlang.org/
-- LLVM 12 http://llvm.org/
+- LLVM 13 http://llvm.org/
 
 LLVM .lib files are required (statically compiled).
 
@@ -48,7 +48,6 @@ Required software: python 3, cmake, visual studio
     - Misc/*
     - Tablegenning/*
 
-
     - Tests/check
     - Tests/check-lit
     - Tests/check-llvm
@@ -58,21 +57,21 @@ Required software: python 3, cmake, visual studio
     - Tests/TestPlugin
     - Tests/UnitTests
 
-
     - Tools/llvm-addr2line
     - Tools/llvm-bitcode-strip
     - Tools/llvm-dlltool
     - Tools/llvm-install-name-tool
     - Tools/llvm-lib
     - Tools/llvm-locstats
+    - Tools/llvm-otool
     - Tools/llvm-ranlib
     - Tools/llvm-readelf
     - Tools/llvm-strip
-
+    - Tools/llvm-windres
 
     - Utils/LLVMVisualizers
 
-    **Make sure to include LLVMTableGenGlobalISel
+    **Make sure to include LLVMTableGenGlobalISel (if it exists)
 
 11) Rebuild ALL-BUILD
 
