@@ -71,8 +71,6 @@ Required software: python 3, cmake, visual studio
 
     - Utils/LLVMVisualizers
 
-    **Make sure to include LLVMTableGenGlobalISel (if it exists)
-
 11) Rebuild ALL-BUILD
 
 12) Copy the lib files from build\Release\lib to somwehere safe and point to them in the dub.sdl file (lflags).
